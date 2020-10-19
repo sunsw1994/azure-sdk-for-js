@@ -38,26 +38,18 @@ export class DataFlow {
     dataFlow: DataFlowResource,
     options?: DataFlowCreateOrUpdateDataFlowOptionalParams
   ): Promise<LROPoller<DataFlowCreateOrUpdateDataFlowResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       dataFlowName,
       dataFlow,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         DataFlowCreateOrUpdateDataFlowResponse
       >;
-    const initialOperationResult = await sendOperation(
-      args,
-      createOrUpdateDataFlowOperationSpec
-    );
+    const initialOperationResult = await sendOperation(args, createOrUpdateDataFlowOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -94,25 +86,15 @@ export class DataFlow {
     dataFlowName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       dataFlowName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      deleteDataFlowOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    const initialOperationResult = await sendOperation(args, deleteDataFlowOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -196,11 +178,7 @@ const createOrUpdateDataFlowOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.dataFlow,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.dataFlowName],
-  headerParameters: [
-    Parameters.contentType,
-    Parameters.accept1,
-    Parameters.ifMatch
-  ],
+  headerParameters: [Parameters.contentType, Parameters.accept1, Parameters.ifMatch],
   mediaType: "json",
   serializer
 };

@@ -1,5 +1,10 @@
-import { EnvironmentCredential,TokenCredentialOptions,AuthorizationCodeCredential,DefaultAzureCredential } from "@azure/identity";
-import { TokenCredential } from '@azure/core-http';
+import {
+  EnvironmentCredential,
+  TokenCredentialOptions,
+  AuthorizationCodeCredential,
+  DefaultAzureCredential
+} from "@azure/identity";
+import { TokenCredential } from "@azure/core-http";
 
 // Load the .env file if it exists
 import * as dotenv from "dotenv";
@@ -35,11 +40,9 @@ export async function main() {
 
   const defaultddd = new DefaultAzureCredential();
   //console.log(await defaultddd.getToken("https://dev.azuresynapse.net/.default"))
-  
+
   // console.log("the result is:");
   // console.log(await defaultAzureCredential.getToken("https://dev.azuresynapse.net/.default"));
-
-
 
   // var operation:TokenCredentialOptions = {
   //   authorityHost:"https://dev.azuresynapse.net/.default"
@@ -48,19 +51,18 @@ export async function main() {
 
   const accesscontrol = new AccessControlClient(
     defaultAzureCredential,
-    "https://shangweiworkspacecli.dev.azuresynapse.net",
+    "https://shangweiworkspacecli.dev.azuresynapse.net"
     //operation
   );
 
-  accesscontrol.getRoleDefinitionById("7af0c69a-a548-47d6-aea3-d00e69bd83aa").then((result)=>{
-      console.log("the result is:");
-      console.log(result);
-    })
-  accesscontrol.getRoleDefinitions().then((result)=>{
-      console.log("the result is:");
-      console.log(result);
-    })
-
+  accesscontrol.getRoleDefinitionById("7af0c69a-a548-47d6-aea3-d00e69bd83aa").then((result) => {
+    console.log("the result is:");
+    console.log(result);
+  });
+  accesscontrol.getRoleDefinitions().then((result) => {
+    console.log("the result is:");
+    console.log(result);
+  });
 }
 
 main().catch((err) => {

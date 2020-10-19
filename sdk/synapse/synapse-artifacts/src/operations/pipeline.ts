@@ -56,26 +56,18 @@ export class Pipeline {
     pipeline: PipelineResource,
     options?: PipelineCreateOrUpdatePipelineOptionalParams
   ): Promise<LROPoller<PipelineCreateOrUpdatePipelineResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       pipelineName,
       pipeline,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         PipelineCreateOrUpdatePipelineResponse
       >;
-    const initialOperationResult = await sendOperation(
-      args,
-      createOrUpdatePipelineOperationSpec
-    );
+    const initialOperationResult = await sendOperation(args, createOrUpdatePipelineOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -112,25 +104,15 @@ export class Pipeline {
     pipelineName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       pipelineName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      deletePipelineOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    const initialOperationResult = await sendOperation(args, deletePipelineOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -232,11 +214,7 @@ const createOrUpdatePipelineOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.pipeline,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.pipelineName],
-  headerParameters: [
-    Parameters.contentType,
-    Parameters.accept1,
-    Parameters.ifMatch
-  ],
+  headerParameters: [Parameters.contentType, Parameters.accept1, Parameters.ifMatch],
   mediaType: "json",
   serializer
 };

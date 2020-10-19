@@ -151,11 +151,7 @@ const createOrUpdateSqlScriptOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.sqlScript,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.sqlScriptName],
-  headerParameters: [
-    Parameters.contentType,
-    Parameters.accept1,
-    Parameters.ifMatch
-  ],
+  headerParameters: [Parameters.contentType, Parameters.accept1, Parameters.ifMatch],
   mediaType: "json",
   serializer
 };

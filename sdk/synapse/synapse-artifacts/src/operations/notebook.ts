@@ -72,26 +72,18 @@ export class Notebook {
     notebook: NotebookResource,
     options?: NotebookCreateOrUpdateNotebookOptionalParams
   ): Promise<LROPoller<NotebookCreateOrUpdateNotebookResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       notebookName,
       notebook,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         NotebookCreateOrUpdateNotebookResponse
       >;
-    const initialOperationResult = await sendOperation(
-      args,
-      createOrUpdateNotebookOperationSpec
-    );
+    const initialOperationResult = await sendOperation(args, createOrUpdateNotebookOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -128,25 +120,15 @@ export class Notebook {
     notebookName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       notebookName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      deleteNotebookOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    const initialOperationResult = await sendOperation(args, deleteNotebookOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -265,11 +247,7 @@ const createOrUpdateNotebookOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.notebook,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.notebookName],
-  headerParameters: [
-    Parameters.contentType,
-    Parameters.accept1,
-    Parameters.ifMatch
-  ],
+  headerParameters: [Parameters.contentType, Parameters.accept1, Parameters.ifMatch],
   mediaType: "json",
   serializer
 };

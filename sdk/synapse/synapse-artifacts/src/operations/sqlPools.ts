@@ -37,10 +37,7 @@ export class SqlPools {
    * @param sqlPoolName The Sql Pool name
    * @param options The options parameters.
    */
-  get(
-    sqlPoolName: string,
-    options?: coreHttp.OperationOptions
-  ): Promise<SqlPoolsGetResponse> {
+  get(sqlPoolName: string, options?: coreHttp.OperationOptions): Promise<SqlPoolsGetResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );

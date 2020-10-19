@@ -12,11 +12,11 @@ urlFragment: keyvault-admin-typescript
 
 These sample programs show how to use the TypeScript client libraries for Azure Key Vault Keys in some common scenarios.
 
-| **File Name** | **Description** |
-| ------------------------------- |
-| [accessControlHelloWorld.ts][accessControlHelloWorld] (RBAC) | Lists all Role Definitions and Role Assignments, Creates a Role Assignment, then gets it and later deletes it. |
-| [backupRestoreHelloWorld.ts][BackupRestoreHelloWorld] | Performs a full key backup, then a full key restore. |
-| [backupSelectiveRestore.ts][BackupSelectiveRestore] | Performs a selective key backup, then a selective key restore. |
+| **File Name**                                                | **Description**                                                                                                |
+| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| [accessControlHelloWorld.ts][accesscontrolhelloworld] (RBAC) | Lists all Role Definitions and Role Assignments, Creates a Role Assignment, then gets it and later deletes it. |
+| [backupRestoreHelloWorld.ts][backuprestorehelloworld]        | Performs a full key backup, then a full key restore.                                                           |
+| [backupSelectiveRestore.ts][backupselectiverestore]          | Performs a selective key backup, then a selective key restore.                                                 |
 
 ## Prerequisites
 
@@ -74,9 +74,9 @@ These samples add and remove roles to and from the application, tenant or princi
 
 Take a look at our [API Documentation][apiref] for more information about the APIs that are available in the clients.
 
-[accessControlHelloWorld]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/keyvault/keyvault-admin/samples/typescript/src/accessControlHelloWorld.ts
-[BackupRestoreHelloWorld]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/keyvault/keyvault-admin/samples/typescript/src/backupRestoreHelloWorld.ts
-[BackupSelectiveRestore]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/keyvault/keyvault-admin/samples/typescript/src/backupSelectiveRestore.ts
+[accesscontrolhelloworld]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/keyvault/keyvault-admin/samples/typescript/src/accessControlHelloWorld.ts
+[backuprestorehelloworld]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/keyvault/keyvault-admin/samples/typescript/src/backupRestoreHelloWorld.ts
+[backupselectiverestore]: https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/keyvault/keyvault-admin/samples/typescript/src/backupSelectiveRestore.ts
 [apiref]: https://docs.microsoft.com/javascript/api/@azure/keyvault-admin
 [azkeyvault]: https://docs.microsoft.com/azure/key-vault/quick-create-portal
 [kvsoftdelete]: https://docs.microsoft.com/azure/key-vault/key-vault-soft-delete-cli

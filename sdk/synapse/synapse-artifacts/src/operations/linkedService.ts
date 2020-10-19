@@ -54,19 +54,14 @@ export class LinkedService {
     linkedService: LinkedServiceResource,
     options?: LinkedServiceCreateOrUpdateLinkedServiceOptionalParams
   ): Promise<LROPoller<LinkedServiceCreateOrUpdateLinkedServiceResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       linkedServiceName,
       linkedService,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         LinkedServiceCreateOrUpdateLinkedServiceResponse
       >;
@@ -110,25 +105,15 @@ export class LinkedService {
     linkedServiceName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       linkedServiceName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      deleteLinkedServiceOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    const initialOperationResult = await sendOperation(args, deleteLinkedServiceOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -212,11 +197,7 @@ const createOrUpdateLinkedServiceOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.linkedService,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.linkedServiceName],
-  headerParameters: [
-    Parameters.contentType,
-    Parameters.accept1,
-    Parameters.ifMatch
-  ],
+  headerParameters: [Parameters.contentType, Parameters.accept1, Parameters.ifMatch],
   mediaType: "json",
   serializer
 };

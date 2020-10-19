@@ -37,21 +37,14 @@ export class DataFlowDebugSession {
   async createDataFlowDebugSession(
     request: CreateDataFlowDebugSessionRequest,
     options?: coreHttp.OperationOptions
-  ): Promise<
-    LROPoller<DataFlowDebugSessionCreateDataFlowDebugSessionResponse>
-  > {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+  ): Promise<LROPoller<DataFlowDebugSessionCreateDataFlowDebugSessionResponse>> {
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       request,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         DataFlowDebugSessionCreateDataFlowDebugSessionResponse
       >;
@@ -74,18 +67,14 @@ export class DataFlowDebugSession {
    */
   queryDataFlowDebugSessionsByWorkspace(
     options?: coreHttp.OperationOptions
-  ): Promise<
-    DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceResponse
-  > {
+  ): Promise<DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { options: operationOptions },
       queryDataFlowDebugSessionsByWorkspaceOperationSpec
-    ) as Promise<
-      DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceResponse
-    >;
+    ) as Promise<DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceResponse>;
   }
 
   /**
@@ -133,25 +122,17 @@ export class DataFlowDebugSession {
     request: DataFlowDebugCommandRequest,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<DataFlowDebugSessionExecuteCommandResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       request,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         DataFlowDebugSessionExecuteCommandResponse
       >;
-    const initialOperationResult = await sendOperation(
-      args,
-      executeCommandOperationSpec
-    );
+    const initialOperationResult = await sendOperation(args, executeCommandOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -170,18 +151,14 @@ export class DataFlowDebugSession {
   queryDataFlowDebugSessionsByWorkspaceNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<
-    DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceNextResponse
-  > {
+  ): Promise<DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.client.sendOperationRequest(
       { nextLink, options: operationOptions },
       queryDataFlowDebugSessionsByWorkspaceNextOperationSpec
-    ) as Promise<
-      DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceNextResponse
-    >;
+    ) as Promise<DataFlowDebugSessionQueryDataFlowDebugSessionsByWorkspaceNextResponse>;
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(

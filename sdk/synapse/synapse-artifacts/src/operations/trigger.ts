@@ -57,26 +57,16 @@ export class Trigger {
     trigger: TriggerResource,
     options?: TriggerCreateOrUpdateTriggerOptionalParams
   ): Promise<LROPoller<TriggerCreateOrUpdateTriggerResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       triggerName,
       trigger,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        TriggerCreateOrUpdateTriggerResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      createOrUpdateTriggerOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<TriggerCreateOrUpdateTriggerResponse>;
+    const initialOperationResult = await sendOperation(args, createOrUpdateTriggerOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -113,25 +103,15 @@ export class Trigger {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       triggerName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      deleteTriggerOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    const initialOperationResult = await sendOperation(args, deleteTriggerOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -150,25 +130,17 @@ export class Trigger {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<TriggerSubscribeTriggerToEventsResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       triggerName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         TriggerSubscribeTriggerToEventsResponse
       >;
-    const initialOperationResult = await sendOperation(
-      args,
-      subscribeTriggerToEventsOperationSpec
-    );
+    const initialOperationResult = await sendOperation(args, subscribeTriggerToEventsOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -205,18 +177,13 @@ export class Trigger {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<TriggerUnsubscribeTriggerFromEventsResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       triggerName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         TriggerUnsubscribeTriggerFromEventsResponse
       >;
@@ -242,25 +209,15 @@ export class Trigger {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       triggerName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      startTriggerOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    const initialOperationResult = await sendOperation(args, startTriggerOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -279,25 +236,15 @@ export class Trigger {
     triggerName: string,
     options?: coreHttp.OperationOptions
   ): Promise<LROPoller<coreHttp.RestResponse>> {
-    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(
-      options
-    );
+    const operationOptions: coreHttp.RequestOptionsBase = this.getOperationOptions(options);
 
     const args: coreHttp.OperationArguments = {
       triggerName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
-      this.client.sendOperationRequest(args, spec) as Promise<
-        coreHttp.RestResponse
-      >;
-    const initialOperationResult = await sendOperation(
-      args,
-      stopTriggerOperationSpec
-    );
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
+      this.client.sendOperationRequest(args, spec) as Promise<coreHttp.RestResponse>;
+    const initialOperationResult = await sendOperation(args, stopTriggerOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -380,11 +327,7 @@ const createOrUpdateTriggerOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.trigger,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.triggerName],
-  headerParameters: [
-    Parameters.contentType,
-    Parameters.accept1,
-    Parameters.ifMatch
-  ],
+  headerParameters: [Parameters.contentType, Parameters.accept1, Parameters.ifMatch],
   mediaType: "json",
   serializer
 };

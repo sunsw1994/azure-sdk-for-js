@@ -1,15 +1,7 @@
-import {
-  OperationArguments,
-  OperationSpec,
-  RestResponse,
-  HttpMethods
-} from "@azure/core-http";
+import { OperationArguments, OperationSpec, RestResponse, HttpMethods } from "@azure/core-http";
 import { PollOperationState, PollOperation } from "@azure/core-lro";
 
-export type FinalStateVia =
-  | "azure-async-operation"
-  | "location"
-  | "original-uri";
+export type FinalStateVia = "azure-async-operation" | "location" | "original-uri";
 
 export interface LROResponseInfo {
   requestMethod: HttpMethods;
@@ -32,8 +24,7 @@ export interface LROOperationStep<TResult extends BaseResult> {
   result: TResult;
 }
 
-export interface LROOperationState<TResult extends BaseResult>
-  extends PollOperationState<TResult> {
+export interface LROOperationState<TResult extends BaseResult> extends PollOperationState<TResult> {
   lastOperation: LROOperationStep<TResult>;
   initialOperation: LROOperationStep<TResult>;
   pollingStrategy: LROStrategy<TResult>;

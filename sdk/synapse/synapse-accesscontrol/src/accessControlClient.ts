@@ -15,7 +15,6 @@ import {
   AccessControlClientGetRoleDefinitionsNextResponse
 } from "./models";
 
-
 export class AccessControlClient extends AccessControlClientContext {
   /**
    * Initializes a new instance of the AccessControlClient class.
@@ -243,11 +242,7 @@ const getRoleAssignmentsOperationSpec: coreHttp.OperationSpec = {
       bodyMapper: Mappers.ErrorContract
     }
   },
-  queryParameters: [
-    Parameters.apiVersion,
-    Parameters.roleId1,
-    Parameters.principalId
-  ],
+  queryParameters: [Parameters.apiVersion, Parameters.roleId1, Parameters.principalId],
   urlParameters: [Parameters.endpoint],
   headerParameters: [Parameters.accept, Parameters.continuationToken],
   serializer

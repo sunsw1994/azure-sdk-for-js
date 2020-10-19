@@ -193,8 +193,7 @@ const deleteOperationSpec: coreHttp.OperationSpec = {
   serializer
 };
 const listOperationSpec: coreHttp.OperationSpec = {
-  path:
-    "/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints",
+  path: "/managedVirtualNetworks/{managedVirtualNetworkName}/managedPrivateEndpoints",
   httpMethod: "GET",
   responses: {
     200: {
@@ -215,11 +214,7 @@ const listNextOperationSpec: coreHttp.OperationSpec = {
     }
   },
   queryParameters: [Parameters.apiVersion],
-  urlParameters: [
-    Parameters.endpoint,
-    Parameters.managedVirtualNetworkName,
-    Parameters.nextLink
-  ],
+  urlParameters: [Parameters.endpoint, Parameters.managedVirtualNetworkName, Parameters.nextLink],
   headerParameters: [Parameters.accept],
   serializer
 };

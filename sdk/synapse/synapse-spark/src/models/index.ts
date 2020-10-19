@@ -315,12 +315,7 @@ export type SparkJobType = "SparkBatch" | "SparkSession" | string;
 /**
  * Defines values for SparkBatchJobResultType.
  */
-export type SparkBatchJobResultType =
-  | "Uncertain"
-  | "Succeeded"
-  | "Failed"
-  | "Cancelled"
-  | string;
+export type SparkBatchJobResultType = "Uncertain" | "Succeeded" | "Failed" | "Cancelled" | string;
 /**
  * Defines values for SchedulerCurrentState.
  */
@@ -340,36 +335,20 @@ export type PluginCurrentState =
 /**
  * Defines values for SparkErrorSource.
  */
-export type SparkErrorSource =
-  | "System"
-  | "User"
-  | "Unknown"
-  | "Dependency"
-  | string;
+export type SparkErrorSource = "System" | "User" | "Unknown" | "Dependency" | string;
 /**
  * Defines values for SparkSessionResultType.
  */
-export type SparkSessionResultType =
-  | "Uncertain"
-  | "Succeeded"
-  | "Failed"
-  | "Cancelled"
-  | string;
+export type SparkSessionResultType = "Uncertain" | "Succeeded" | "Failed" | "Cancelled" | string;
 /**
  * Defines values for SparkStatementLanguageType.
  */
-export type SparkStatementLanguageType =
-  | "spark"
-  | "pyspark"
-  | "dotnetspark"
-  | "sql"
-  | string;
+export type SparkStatementLanguageType = "spark" | "pyspark" | "dotnetspark" | "sql" | string;
 
 /**
  * Optional parameters.
  */
-export interface SparkBatchGetSparkBatchJobsOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SparkBatchGetSparkBatchJobsOptionalParams extends coreHttp.OperationOptions {
   /**
    * Optional param specifying which index the list should begin from.
    */
@@ -408,8 +387,7 @@ export type SparkBatchGetSparkBatchJobsResponse = SparkBatchJobCollection & {
 /**
  * Optional parameters.
  */
-export interface SparkBatchCreateSparkBatchJobOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SparkBatchCreateSparkBatchJobOptionalParams extends coreHttp.OperationOptions {
   /**
    * Optional query param specifying whether detailed response is returned beyond plain livy.
    */
@@ -439,8 +417,7 @@ export type SparkBatchCreateSparkBatchJobResponse = SparkBatchJob & {
 /**
  * Optional parameters.
  */
-export interface SparkBatchGetSparkBatchJobOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SparkBatchGetSparkBatchJobOptionalParams extends coreHttp.OperationOptions {
   /**
    * Optional query param specifying whether detailed response is returned beyond plain livy.
    */
@@ -470,8 +447,7 @@ export type SparkBatchGetSparkBatchJobResponse = SparkBatchJob & {
 /**
  * Optional parameters.
  */
-export interface SparkSessionGetSparkSessionsOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SparkSessionGetSparkSessionsOptionalParams extends coreHttp.OperationOptions {
   /**
    * Optional param specifying which index the list should begin from.
    */
@@ -510,8 +486,7 @@ export type SparkSessionGetSparkSessionsResponse = SparkSessionCollection & {
 /**
  * Optional parameters.
  */
-export interface SparkSessionCreateSparkSessionOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SparkSessionCreateSparkSessionOptionalParams extends coreHttp.OperationOptions {
   /**
    * Optional query param specifying whether detailed response is returned beyond plain livy.
    */
@@ -541,8 +516,7 @@ export type SparkSessionCreateSparkSessionResponse = SparkSession & {
 /**
  * Optional parameters.
  */
-export interface SparkSessionGetSparkSessionOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SparkSessionGetSparkSessionOptionalParams extends coreHttp.OperationOptions {
   /**
    * Optional query param specifying whether detailed response is returned beyond plain livy.
    */
@@ -652,8 +626,7 @@ export type SparkSessionCancelSparkStatementResponse = SparkStatementCancellatio
 /**
  * Optional parameters.
  */
-export interface SparkClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+export interface SparkClientOptionalParams extends coreHttp.ServiceClientOptions {
   /**
    * Valid api-version for the request.
    */

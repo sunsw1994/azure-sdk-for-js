@@ -11,13 +11,15 @@ import { SDK_VERSION } from "./constants";
 //export const SDK_VERSION: string = "1.0.0-beta.2";
 //export const LIB_INFO = `azsdk-js-schema-registry/${SDK_VERSION}`;
 
-
 export function createPipeline(
   options: PipelineOptions,
-  credential: TokenCredential 
+  credential: TokenCredential
 ): ServiceClientOptions {
   const internalOptions = convertPipelineOptions(options);
-  const policy = bearerTokenAuthenticationPolicy(credential, "https://dev.azuresynapse.net/.default");
+  const policy = bearerTokenAuthenticationPolicy(
+    credential,
+    "https://dev.azuresynapse.net/.default"
+  );
   return createPipelineFromOptions(internalOptions, policy);
 }
 
@@ -33,6 +35,6 @@ function convertPipelineOptions(options: PipelineOptions): InternalPipelineOptio
   }
 
   return {
-    ...options,
+    ...options
   };
 }

@@ -208,10 +208,7 @@ export type IntegrationRuntimeUnion =
   | IntegrationRuntime
   | ManagedIntegrationRuntime
   | SelfHostedIntegrationRuntime;
-export type SecretBaseUnion =
-  | SecretBase
-  | SecureString
-  | AzureKeyVaultSecretReference;
+export type SecretBaseUnion = SecretBase | SecureString | AzureKeyVaultSecretReference;
 export type DatasetLocationUnion =
   | DatasetLocation
   | AzureBlobStorageLocation
@@ -263,9 +260,7 @@ export type StoreWriteSettingsUnion =
   | AzureBlobFSWriteSettings
   | AzureDataLakeStoreWriteSettings
   | FileServerWriteSettings;
-export type FormatReadSettingsUnion =
-  | FormatReadSettings
-  | DelimitedTextReadSettings;
+export type FormatReadSettingsUnion = FormatReadSettings | DelimitedTextReadSettings;
 export type FormatWriteSettingsUnion =
   | FormatWriteSettings
   | AvroWriteSettings
@@ -2904,12 +2899,7 @@ export interface DatasetStorageFormat {
   /**
    * Polymorphic discriminator, which specifies the different types this object can be
    */
-  type:
-    | "TextFormat"
-    | "JsonFormat"
-    | "AvroFormat"
-    | "OrcFormat"
-    | "ParquetFormat";
+  type: "TextFormat" | "JsonFormat" | "AvroFormat" | "OrcFormat" | "ParquetFormat";
   /**
    * Describes unknown properties. The value of an unknown property can be of "any" type.
    */
@@ -3099,10 +3089,7 @@ export interface FormatWriteSettings {
   /**
    * Polymorphic discriminator, which specifies the different types this object can be
    */
-  type:
-    | "AvroWriteSettings"
-    | "DelimitedTextWriteSettings"
-    | "JsonWriteSettings";
+  type: "AvroWriteSettings" | "DelimitedTextWriteSettings" | "JsonWriteSettings";
   /**
    * Describes unknown properties. The value of an unknown property can be of "any" type.
    */
@@ -12319,9 +12306,7 @@ export interface DataFlowDebugSessionExecuteCommandHeaders {
 /**
  * Defines values for IntegrationRuntimeReferenceType.
  */
-export type IntegrationRuntimeReferenceType =
-  | "IntegrationRuntimeReference"
-  | string;
+export type IntegrationRuntimeReferenceType = "IntegrationRuntimeReference" | string;
 /**
  * Defines values for ParameterType.
  */
@@ -12341,12 +12326,7 @@ export type Type = "LinkedServiceReference" | string;
 /**
  * Defines values for DependencyCondition.
  */
-export type DependencyCondition =
-  | "Succeeded"
-  | "Failed"
-  | "Skipped"
-  | "Completed"
-  | string;
+export type DependencyCondition = "Succeeded" | "Failed" | "Skipped" | "Completed" | string;
 /**
  * Defines values for VariableType.
  */
@@ -12371,12 +12351,7 @@ export type RunQueryFilterOperand =
 /**
  * Defines values for RunQueryFilterOperator.
  */
-export type RunQueryFilterOperator =
-  | "Equals"
-  | "NotEquals"
-  | "In"
-  | "NotIn"
-  | string;
+export type RunQueryFilterOperator = "Equals" | "NotEquals" | "In" | "NotIn" | string;
 /**
  * Defines values for RunQueryOrderByField.
  */
@@ -12432,12 +12407,7 @@ export type SparkJobType = "SparkBatch" | "SparkSession" | string;
 /**
  * Defines values for SparkBatchJobResultType.
  */
-export type SparkBatchJobResultType =
-  | "Uncertain"
-  | "Succeeded"
-  | "Failed"
-  | "Cancelled"
-  | string;
+export type SparkBatchJobResultType = "Uncertain" | "Succeeded" | "Failed" | "Cancelled" | string;
 /**
  * Defines values for SchedulerCurrentState.
  */
@@ -12457,21 +12427,11 @@ export type PluginCurrentState =
 /**
  * Defines values for SparkErrorSource.
  */
-export type SparkErrorSource =
-  | "System"
-  | "User"
-  | "Unknown"
-  | "Dependency"
-  | string;
+export type SparkErrorSource = "System" | "User" | "Unknown" | "Dependency" | string;
 /**
  * Defines values for CellOutputType.
  */
-export type CellOutputType =
-  | "execute_result"
-  | "display_data"
-  | "stream"
-  | "error"
-  | string;
+export type CellOutputType = "execute_result" | "display_data" | "stream" | "error" | string;
 /**
  * Defines values for PrivateLinkServiceConnectionStateStatus.
  */
@@ -12484,14 +12444,7 @@ export type PrivateLinkServiceConnectionStateStatus =
 /**
  * Defines values for NodeSize.
  */
-export type NodeSize =
-  | "None"
-  | "Small"
-  | "Medium"
-  | "Large"
-  | "XLarge"
-  | "XXLarge"
-  | string;
+export type NodeSize = "None" | "Small" | "Medium" | "Large" | "XLarge" | "XXLarge" | string;
 /**
  * Defines values for NodeSizeFamily.
  */
@@ -12539,22 +12492,11 @@ export type DatasetCompressionLevel = "Optimal" | "Fastest" | string;
 /**
  * Defines values for AvroCompressionCodec.
  */
-export type AvroCompressionCodec =
-  | "none"
-  | "deflate"
-  | "snappy"
-  | "xz"
-  | "bzip2"
-  | string;
+export type AvroCompressionCodec = "none" | "deflate" | "snappy" | "xz" | "bzip2" | string;
 /**
  * Defines values for ParquetCompressionCodec.
  */
-export type ParquetCompressionCodec =
-  | "none"
-  | "gzip"
-  | "snappy"
-  | "lzo"
-  | string;
+export type ParquetCompressionCodec = "none" | "gzip" | "snappy" | "lzo" | string;
 /**
  * Defines values for DelimitedTextCompressionCodec.
  */
@@ -12577,11 +12519,7 @@ export type DynamicsDeploymentType = "Online" | "OnPremisesWithIfd" | string;
 /**
  * Defines values for DynamicsAuthenticationType.
  */
-export type DynamicsAuthenticationType =
-  | "Office365"
-  | "Ifd"
-  | "AADServicePrincipal"
-  | string;
+export type DynamicsAuthenticationType = "Office365" | "Ifd" | "AADServicePrincipal" | string;
 /**
  * Defines values for DynamicsServicePrincipalCredentialType.
  */
@@ -12621,11 +12559,7 @@ export type ODataAadServicePrincipalCredentialType =
 /**
  * Defines values for WebAuthenticationType.
  */
-export type WebAuthenticationType =
-  | "Basic"
-  | "Anonymous"
-  | "ClientCertificate"
-  | string;
+export type WebAuthenticationType = "Basic" | "Anonymous" | "ClientCertificate" | string;
 /**
  * Defines values for MongoDbAuthenticationType.
  */
@@ -12675,11 +12609,7 @@ export type HBaseAuthenticationType = "Anonymous" | "Basic" | string;
 /**
  * Defines values for HiveServerType.
  */
-export type HiveServerType =
-  | "HiveServer1"
-  | "HiveServer2"
-  | "HiveThriftServer"
-  | string;
+export type HiveServerType = "HiveServer1" | "HiveServer2" | "HiveThriftServer" | string;
 /**
  * Defines values for HiveThriftTransportProtocol.
  */
@@ -12720,11 +12650,7 @@ export type ServiceNowAuthenticationType = "Basic" | "OAuth2" | string;
 /**
  * Defines values for SparkServerType.
  */
-export type SparkServerType =
-  | "SharkServer"
-  | "SharkServer2"
-  | "SparkThriftServer"
-  | string;
+export type SparkServerType = "SharkServer" | "SharkServer2" | "SparkThriftServer" | string;
 /**
  * Defines values for SparkThriftTransportProtocol.
  */
@@ -12791,11 +12717,7 @@ export type StoredProcedureParameterType =
 /**
  * Defines values for OraclePartitionOption.
  */
-export type OraclePartitionOption =
-  | "None"
-  | "PhysicalPartitionsOfTable"
-  | "DynamicRange"
-  | string;
+export type OraclePartitionOption = "None" | "PhysicalPartitionsOfTable" | "DynamicRange" | string;
 /**
  * Defines values for TeradataPartitionOption.
  */
@@ -12818,11 +12740,7 @@ export type CassandraSourceReadConsistencyLevels =
 /**
  * Defines values for NetezzaPartitionOption.
  */
-export type NetezzaPartitionOption =
-  | "None"
-  | "DataSlice"
-  | "DynamicRange"
-  | string;
+export type NetezzaPartitionOption = "None" | "DataSlice" | "DynamicRange" | string;
 /**
  * Defines values for SapCloudForCustomerSinkWriteBehavior.
  */
@@ -12846,19 +12764,11 @@ export type SalesforceSinkWriteBehavior = "Insert" | "Upsert" | string;
 /**
  * Defines values for HDInsightActivityDebugInfoOption.
  */
-export type HDInsightActivityDebugInfoOption =
-  | "None"
-  | "Always"
-  | "Failure"
-  | string;
+export type HDInsightActivityDebugInfoOption = "None" | "Always" | "Failure" | string;
 /**
  * Defines values for SsisPackageLocationType.
  */
-export type SsisPackageLocationType =
-  | "SSISDB"
-  | "File"
-  | "InlinePackage"
-  | string;
+export type SsisPackageLocationType = "SSISDB" | "File" | "InlinePackage" | string;
 /**
  * Defines values for SsisLogLocationType.
  */
@@ -12886,11 +12796,7 @@ export type WebHookActivityMethod = "POST" | string;
 /**
  * Defines values for DataFlowComputeType.
  */
-export type DataFlowComputeType =
-  | "General"
-  | "MemoryOptimized"
-  | "ComputeOptimized"
-  | string;
+export type DataFlowComputeType = "General" | "MemoryOptimized" | "ComputeOptimized" | string;
 /**
  * Defines values for RecurrenceFrequency.
  */
@@ -12945,10 +12851,7 @@ export type IntegrationRuntimeSsisCatalogPricingTier =
 /**
  * Defines values for IntegrationRuntimeLicenseType.
  */
-export type IntegrationRuntimeLicenseType =
-  | "BasePrice"
-  | "LicenseIncluded"
-  | string;
+export type IntegrationRuntimeLicenseType = "BasePrice" | "LicenseIncluded" | string;
 /**
  * Defines values for IntegrationRuntimeEntityReferenceType.
  */
@@ -12963,11 +12866,7 @@ export type IntegrationRuntimeEdition = "Standard" | "Enterprise" | string;
 /**
  * Defines values for CopyBehaviorType.
  */
-export type CopyBehaviorType =
-  | "PreserveHierarchy"
-  | "FlattenHierarchy"
-  | "MergeFiles"
-  | string;
+export type CopyBehaviorType = "PreserveHierarchy" | "FlattenHierarchy" | "MergeFiles" | string;
 /**
  * Defines values for ResourceIdentityType.
  */
@@ -13038,8 +12937,7 @@ export type LinkedServiceCreateOrUpdateLinkedServiceResponse = LinkedServiceReso
 /**
  * Optional parameters.
  */
-export interface LinkedServiceGetLinkedServiceOptionalParams
-  extends coreHttp.OperationOptions {
+export interface LinkedServiceGetLinkedServiceOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the linked service entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned.
    */
@@ -13109,8 +13007,7 @@ export type DatasetGetDatasetsByWorkspaceResponse = DatasetListResponse & {
 /**
  * Optional parameters.
  */
-export interface DatasetCreateOrUpdateDatasetOptionalParams
-  extends coreHttp.OperationOptions {
+export interface DatasetCreateOrUpdateDatasetOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the dataset entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update.
    */
@@ -13140,8 +13037,7 @@ export type DatasetCreateOrUpdateDatasetResponse = DatasetResource & {
 /**
  * Optional parameters.
  */
-export interface DatasetGetDatasetOptionalParams
-  extends coreHttp.OperationOptions {
+export interface DatasetGetDatasetOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the dataset entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned.
    */
@@ -13211,8 +13107,7 @@ export type PipelineGetPipelinesByWorkspaceResponse = PipelineListResponse & {
 /**
  * Optional parameters.
  */
-export interface PipelineCreateOrUpdatePipelineOptionalParams
-  extends coreHttp.OperationOptions {
+export interface PipelineCreateOrUpdatePipelineOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the pipeline entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update.
    */
@@ -13242,8 +13137,7 @@ export type PipelineCreateOrUpdatePipelineResponse = PipelineResource & {
 /**
  * Optional parameters.
  */
-export interface PipelineGetPipelineOptionalParams
-  extends coreHttp.OperationOptions {
+export interface PipelineGetPipelineOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the pipeline entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned.
    */
@@ -13273,8 +13167,7 @@ export type PipelineGetPipelineResponse = PipelineResource & {
 /**
  * Optional parameters.
  */
-export interface PipelineCreatePipelineRunOptionalParams
-  extends coreHttp.OperationOptions {
+export interface PipelineCreatePipelineRunOptionalParams extends coreHttp.OperationOptions {
   /**
    * Parameters of the pipeline run. These parameters will be used only if the runId is not specified.
    */
@@ -13396,8 +13289,7 @@ export type PipelineRunQueryActivityRunsResponse = ActivityRunsQueryResponse & {
 /**
  * Optional parameters.
  */
-export interface PipelineRunCancelPipelineRunOptionalParams
-  extends coreHttp.OperationOptions {
+export interface PipelineRunCancelPipelineRunOptionalParams extends coreHttp.OperationOptions {
   /**
    * If true, cancel all the Child pipelines that are triggered by the current pipeline.
    */
@@ -13427,8 +13319,7 @@ export type TriggerGetTriggersByWorkspaceResponse = TriggerListResponse & {
 /**
  * Optional parameters.
  */
-export interface TriggerCreateOrUpdateTriggerOptionalParams
-  extends coreHttp.OperationOptions {
+export interface TriggerCreateOrUpdateTriggerOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the trigger entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update.
    */
@@ -13458,8 +13349,7 @@ export type TriggerCreateOrUpdateTriggerResponse = TriggerResource & {
 /**
  * Optional parameters.
  */
-export interface TriggerGetTriggerOptionalParams
-  extends coreHttp.OperationOptions {
+export interface TriggerGetTriggerOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the trigger entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned.
    */
@@ -13589,8 +13479,7 @@ export type TriggerRunQueryTriggerRunsByWorkspaceResponse = TriggerRunsQueryResp
 /**
  * Optional parameters.
  */
-export interface DataFlowCreateOrUpdateDataFlowOptionalParams
-  extends coreHttp.OperationOptions {
+export interface DataFlowCreateOrUpdateDataFlowOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the data flow entity. Should only be specified for update, for which it should match existing entity or can be * for unconditional update.
    */
@@ -13620,8 +13509,7 @@ export type DataFlowCreateOrUpdateDataFlowResponse = DataFlowResource & {
 /**
  * Optional parameters.
  */
-export interface DataFlowGetDataFlowOptionalParams
-  extends coreHttp.OperationOptions {
+export interface DataFlowGetDataFlowOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the data flow entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned.
    */
@@ -13811,8 +13699,7 @@ export type SqlScriptGetSqlScriptsByWorkspaceResponse = SqlScriptsListResponse &
 /**
  * Optional parameters.
  */
-export interface SqlScriptCreateOrUpdateSqlScriptOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SqlScriptCreateOrUpdateSqlScriptOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the SQL script entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update.
    */
@@ -13842,8 +13729,7 @@ export type SqlScriptCreateOrUpdateSqlScriptResponse = SqlScriptResource & {
 /**
  * Optional parameters.
  */
-export interface SqlScriptGetSqlScriptOptionalParams
-  extends coreHttp.OperationOptions {
+export interface SqlScriptGetSqlScriptOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the sql compute entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned.
    */
@@ -14075,8 +13961,7 @@ export type NotebookGetNotebookSummaryByWorkSpaceResponse = NotebookListResponse
 /**
  * Optional parameters.
  */
-export interface NotebookCreateOrUpdateNotebookOptionalParams
-  extends coreHttp.OperationOptions {
+export interface NotebookCreateOrUpdateNotebookOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the Note book entity.  Should only be specified for update, for which it should match existing entity or can be * for unconditional update.
    */
@@ -14106,8 +13991,7 @@ export type NotebookCreateOrUpdateNotebookResponse = NotebookResource & {
 /**
  * Optional parameters.
  */
-export interface NotebookGetNotebookOptionalParams
-  extends coreHttp.OperationOptions {
+export interface NotebookGetNotebookOptionalParams extends coreHttp.OperationOptions {
   /**
    * ETag of the Notebook entity. Should only be specified for get. If the ETag matches the existing entity tag, or if * was provided, then no content will be returned.
    */
@@ -14317,8 +14201,7 @@ export type IntegrationRuntimesGetResponse = IntegrationRuntimeResource & {
 /**
  * Optional parameters.
  */
-export interface ArtifactsClientOptionalParams
-  extends coreHttp.ServiceClientOptions {
+export interface ArtifactsClientOptionalParams extends coreHttp.ServiceClientOptions {
   /**
    * Api Version
    */

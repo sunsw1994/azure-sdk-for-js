@@ -119,10 +119,7 @@ export class SparkJobDefinition {
       sparkJobDefinitionName,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         SparkJobDefinitionExecuteSparkJobDefinitionResponse
       >;
@@ -158,17 +155,11 @@ export class SparkJobDefinition {
       sparkJobDefinitionAzureResource,
       options: operationOptions
     };
-    const sendOperation = (
-      args: coreHttp.OperationArguments,
-      spec: coreHttp.OperationSpec
-    ) =>
+    const sendOperation = (args: coreHttp.OperationArguments, spec: coreHttp.OperationSpec) =>
       this.client.sendOperationRequest(args, spec) as Promise<
         SparkJobDefinitionDebugSparkJobDefinitionResponse
       >;
-    const initialOperationResult = await sendOperation(
-      args,
-      debugSparkJobDefinitionOperationSpec
-    );
+    const initialOperationResult = await sendOperation(args, debugSparkJobDefinitionOperationSpec);
 
     return new LROPoller({
       initialOperationArguments: args,
@@ -195,9 +186,7 @@ export class SparkJobDefinition {
     return this.client.sendOperationRequest(
       { nextLink, options: operationOptions },
       getSparkJobDefinitionsByWorkspaceNextOperationSpec
-    ) as Promise<
-      SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceNextResponse
-    >;
+    ) as Promise<SparkJobDefinitionGetSparkJobDefinitionsByWorkspaceNextResponse>;
   }
 
   private getOperationOptions<TOptions extends coreHttp.OperationOptions>(
@@ -246,11 +235,7 @@ const createOrUpdateSparkJobDefinitionOperationSpec: coreHttp.OperationSpec = {
   requestBody: Parameters.sparkJobDefinition,
   queryParameters: [Parameters.apiVersion],
   urlParameters: [Parameters.endpoint, Parameters.sparkJobDefinitionName],
-  headerParameters: [
-    Parameters.contentType,
-    Parameters.accept1,
-    Parameters.ifMatch
-  ],
+  headerParameters: [Parameters.contentType, Parameters.accept1, Parameters.ifMatch],
   mediaType: "json",
   serializer
 };

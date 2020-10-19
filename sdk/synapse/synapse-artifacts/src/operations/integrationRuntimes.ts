@@ -2,10 +2,7 @@ import * as coreHttp from "@azure/core-http";
 import * as Mappers from "../models/mappers";
 import * as Parameters from "../models/parameters";
 import { ArtifactsClient } from "../artifactsClient";
-import {
-  IntegrationRuntimesListResponse,
-  IntegrationRuntimesGetResponse
-} from "../models";
+import { IntegrationRuntimesListResponse, IntegrationRuntimesGetResponse } from "../models";
 
 /**
  * Class representing a IntegrationRuntimes.
@@ -25,9 +22,7 @@ export class IntegrationRuntimes {
    * List Integration Runtimes
    * @param options The options parameters.
    */
-  list(
-    options?: coreHttp.OperationOptions
-  ): Promise<IntegrationRuntimesListResponse> {
+  list(options?: coreHttp.OperationOptions): Promise<IntegrationRuntimesListResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
