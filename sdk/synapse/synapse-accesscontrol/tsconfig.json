@@ -1,0 +1,16 @@
+{
+  "extends": "../../../tsconfig.package",
+  "compilerOptions": {
+    "declarationDir": "./types",
+    "outDir": "./dist-esm",
+    "resolveJsonModule": true
+  },
+  "exclude": [
+    "node_modules",
+    "./samples/**/*.ts"
+  ],
+  "include": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+  ]
+}
