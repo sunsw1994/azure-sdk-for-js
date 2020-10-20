@@ -1,15 +1,15 @@
 import * as coreHttp from "@azure/core-http";
-import { AccessControlClientOptionalParams } from "./models";
+import { SynapseAccessControlOptionalParams } from "./models";
 
 const packageName = "@azure/synapse-accesscontrol";
 const packageVersion = "1.0.0";
 
-export class AccessControlClientContext extends coreHttp.ServiceClient {
+export class SynapseAccessControlContext extends coreHttp.ServiceClient {
   endpoint: string;
   apiVersion: string;
 
   /**
-   * Initializes a new instance of the AccessControlClientContext class.
+   * Initializes a new instance of the SynapseAccessControlContext class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param endpoint The workspace development endpoint, for example
    *                 https://myworkspace.dev.azuresynapse.net.
@@ -18,7 +18,7 @@ export class AccessControlClientContext extends coreHttp.ServiceClient {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     endpoint: string,
-    options?: AccessControlClientOptionalParams
+    options?: SynapseAccessControlOptionalParams
   ) {
     if (credentials === undefined) {
       throw new Error("'credentials' cannot be null");

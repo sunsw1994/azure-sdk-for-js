@@ -1,3 +1,3 @@
 export * from "./models";
-export { AccessControlClient } from "./accessControlClient";
-export { AccessControlClientContext } from "./accessControlClientContext";
+export { SynapseAccessControl } from "./synapseAccessControl";
+export { SynapseAccessControlContext } from "./synapseAccessControlContext";

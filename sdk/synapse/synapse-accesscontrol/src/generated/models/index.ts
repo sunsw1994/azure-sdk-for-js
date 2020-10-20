@@ -88,9 +88,9 @@ export interface RoleAssignmentDetails {
 }
 
 /**
- * Defines headers for AccessControlClient_getRoleAssignments operation.
+ * Defines headers for SynapseAccessControl_getRoleAssignments operation.
  */
-export interface AccessControlClientGetRoleAssignmentsHeaders {
+export interface SynapseAccessControlGetRoleAssignmentsHeaders {
   /**
    * If the number of role assignments to be listed exceeds the maxResults limit, a continuation token is returned in this response header.  When a continuation token is returned in the response, it must be specified in a subsequent invocation of the list operation to continue listing the role assignments.
    */
@@ -100,7 +100,7 @@ export interface AccessControlClientGetRoleAssignmentsHeaders {
 /**
  * Contains response data for the getRoleDefinitions operation.
  */
-export type AccessControlClientGetRoleDefinitionsResponse = RolesListResponse & {
+export type SynapseAccessControlGetRoleDefinitionsResponse = RolesListResponse & {
   /**
    * The underlying HTTP response.
    */
@@ -120,7 +120,7 @@ export type AccessControlClientGetRoleDefinitionsResponse = RolesListResponse & 
 /**
  * Contains response data for the getRoleDefinitionById operation.
  */
-export type AccessControlClientGetRoleDefinitionByIdResponse = SynapseRole & {
+export type SynapseAccessControlGetRoleDefinitionByIdResponse = SynapseRole & {
   /**
    * The underlying HTTP response.
    */
@@ -140,7 +140,7 @@ export type AccessControlClientGetRoleDefinitionByIdResponse = SynapseRole & {
 /**
  * Contains response data for the createRoleAssignment operation.
  */
-export type AccessControlClientCreateRoleAssignmentResponse = RoleAssignmentDetails & {
+export type SynapseAccessControlCreateRoleAssignmentResponse = RoleAssignmentDetails & {
   /**
    * The underlying HTTP response.
    */
@@ -160,7 +160,7 @@ export type AccessControlClientCreateRoleAssignmentResponse = RoleAssignmentDeta
 /**
  * Optional parameters.
  */
-export interface AccessControlClientGetRoleAssignmentsOptionalParams
+export interface SynapseAccessControlGetRoleAssignmentsOptionalParams
   extends coreHttp.OperationOptions {
   /**
    * Synapse Built-In Role Id.
@@ -179,7 +179,7 @@ export interface AccessControlClientGetRoleAssignmentsOptionalParams
 /**
  * Contains response data for the getRoleAssignments operation.
  */
-export type AccessControlClientGetRoleAssignmentsResponse = AccessControlClientGetRoleAssignmentsHeaders &
+export type SynapseAccessControlGetRoleAssignmentsResponse = SynapseAccessControlGetRoleAssignmentsHeaders &
   RoleAssignmentDetails[] & {
     /**
      * The underlying HTTP response.
@@ -197,14 +197,14 @@ export type AccessControlClientGetRoleAssignmentsResponse = AccessControlClientG
       /**
        * The parsed HTTP response headers.
        */
-      parsedHeaders: AccessControlClientGetRoleAssignmentsHeaders;
+      parsedHeaders: SynapseAccessControlGetRoleAssignmentsHeaders;
     };
   };
 
 /**
  * Contains response data for the getRoleAssignmentById operation.
  */
-export type AccessControlClientGetRoleAssignmentByIdResponse = RoleAssignmentDetails & {
+export type SynapseAccessControlGetRoleAssignmentByIdResponse = RoleAssignmentDetails & {
   /**
    * The underlying HTTP response.
    */
@@ -224,7 +224,7 @@ export type AccessControlClientGetRoleAssignmentByIdResponse = RoleAssignmentDet
 /**
  * Contains response data for the getCallerRoleAssignments operation.
  */
-export type AccessControlClientGetCallerRoleAssignmentsResponse = {
+export type SynapseAccessControlGetCallerRoleAssignmentsResponse = {
   /**
    * The parsed response body.
    */
@@ -249,7 +249,7 @@ export type AccessControlClientGetCallerRoleAssignmentsResponse = {
 /**
  * Contains response data for the getRoleDefinitionsNext operation.
  */
-export type AccessControlClientGetRoleDefinitionsNextResponse = RolesListResponse & {
+export type SynapseAccessControlGetRoleDefinitionsNextResponse = RolesListResponse & {
   /**
    * The underlying HTTP response.
    */
@@ -269,7 +269,7 @@ export type AccessControlClientGetRoleDefinitionsNextResponse = RolesListRespons
 /**
  * Optional parameters.
  */
-export interface AccessControlClientOptionalParams
+export interface SynapseAccessControlOptionalParams
   extends coreHttp.ServiceClientOptions {
   /**
    * Api Version

@@ -182,10 +182,10 @@ export const RoleAssignmentDetails: coreHttp.CompositeMapper = {
   }
 };
 
-export const AccessControlClientGetRoleAssignmentsHeaders: coreHttp.CompositeMapper = {
+export const SynapseAccessControlGetRoleAssignmentsHeaders: coreHttp.CompositeMapper = {
   type: {
     name: "Composite",
-    className: "AccessControlClientGetRoleAssignmentsHeaders",
+    className: "SynapseAccessControlGetRoleAssignmentsHeaders",
     modelProperties: {
       xMsContinuation: {
         serializedName: "x-ms-continuation",

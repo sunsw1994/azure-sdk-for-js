@@ -1,23 +1,23 @@
 import * as coreHttp from "@azure/core-http";
 import * as Parameters from "./models/parameters";
 import * as Mappers from "./models/mappers";
-import { AccessControlClientContext } from "./accessControlClientContext";
+import { SynapseAccessControlContext } from "./synapseAccessControlContext";
 import {
-  AccessControlClientOptionalParams,
-  AccessControlClientGetRoleDefinitionsResponse,
-  AccessControlClientGetRoleDefinitionByIdResponse,
+  SynapseAccessControlOptionalParams,
+  SynapseAccessControlGetRoleDefinitionsResponse,
+  SynapseAccessControlGetRoleDefinitionByIdResponse,
   RoleAssignmentOptions,
-  AccessControlClientCreateRoleAssignmentResponse,
-  AccessControlClientGetRoleAssignmentsOptionalParams,
-  AccessControlClientGetRoleAssignmentsResponse,
-  AccessControlClientGetRoleAssignmentByIdResponse,
-  AccessControlClientGetCallerRoleAssignmentsResponse,
-  AccessControlClientGetRoleDefinitionsNextResponse
+  SynapseAccessControlCreateRoleAssignmentResponse,
+  SynapseAccessControlGetRoleAssignmentsOptionalParams,
+  SynapseAccessControlGetRoleAssignmentsResponse,
+  SynapseAccessControlGetRoleAssignmentByIdResponse,
+  SynapseAccessControlGetCallerRoleAssignmentsResponse,
+  SynapseAccessControlGetRoleDefinitionsNextResponse
 } from "./models";
 
-export class AccessControlClient extends AccessControlClientContext {
+export class SynapseAccessControl extends SynapseAccessControlContext {
   /**
-   * Initializes a new instance of the AccessControlClient class.
+   * Initializes a new instance of the SynapseAccessControl class.
    * @param credentials Subscription credentials which uniquely identify client subscription.
    * @param endpoint The workspace development endpoint, for example
    *                 https://myworkspace.dev.azuresynapse.net.
@@ -26,7 +26,7 @@ export class AccessControlClient extends AccessControlClientContext {
   constructor(
     credentials: coreHttp.TokenCredential | coreHttp.ServiceClientCredentials,
     endpoint: string,
-    options?: AccessControlClientOptionalParams
+    options?: SynapseAccessControlOptionalParams
   ) {
     super(credentials, endpoint, options);
   }
@@ -37,14 +37,14 @@ export class AccessControlClient extends AccessControlClientContext {
    */
   getRoleDefinitions(
     options?: coreHttp.OperationOptions
-  ): Promise<AccessControlClientGetRoleDefinitionsResponse> {
+  ): Promise<SynapseAccessControlGetRoleDefinitionsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { options: operationOptions },
       getRoleDefinitionsOperationSpec
-    ) as Promise<AccessControlClientGetRoleDefinitionsResponse>;
+    ) as Promise<SynapseAccessControlGetRoleDefinitionsResponse>;
   }
 
   /**
@@ -55,14 +55,14 @@ export class AccessControlClient extends AccessControlClientContext {
   getRoleDefinitionById(
     roleId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<AccessControlClientGetRoleDefinitionByIdResponse> {
+  ): Promise<SynapseAccessControlGetRoleDefinitionByIdResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { roleId, options: operationOptions },
       getRoleDefinitionByIdOperationSpec
-    ) as Promise<AccessControlClientGetRoleDefinitionByIdResponse>;
+    ) as Promise<SynapseAccessControlGetRoleDefinitionByIdResponse>;
   }
 
   /**
@@ -73,14 +73,14 @@ export class AccessControlClient extends AccessControlClientContext {
   createRoleAssignment(
     createRoleAssignmentOptions: RoleAssignmentOptions,
     options?: coreHttp.OperationOptions
-  ): Promise<AccessControlClientCreateRoleAssignmentResponse> {
+  ): Promise<SynapseAccessControlCreateRoleAssignmentResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { createRoleAssignmentOptions, options: operationOptions },
       createRoleAssignmentOperationSpec
-    ) as Promise<AccessControlClientCreateRoleAssignmentResponse>;
+    ) as Promise<SynapseAccessControlCreateRoleAssignmentResponse>;
   }
 
   /**
@@ -88,15 +88,15 @@ export class AccessControlClient extends AccessControlClientContext {
    * @param options The options parameters.
    */
   getRoleAssignments(
-    options?: AccessControlClientGetRoleAssignmentsOptionalParams
-  ): Promise<AccessControlClientGetRoleAssignmentsResponse> {
+    options?: SynapseAccessControlGetRoleAssignmentsOptionalParams
+  ): Promise<SynapseAccessControlGetRoleAssignmentsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { options: operationOptions },
       getRoleAssignmentsOperationSpec
-    ) as Promise<AccessControlClientGetRoleAssignmentsResponse>;
+    ) as Promise<SynapseAccessControlGetRoleAssignmentsResponse>;
   }
 
   /**
@@ -107,14 +107,14 @@ export class AccessControlClient extends AccessControlClientContext {
   getRoleAssignmentById(
     roleAssignmentId: string,
     options?: coreHttp.OperationOptions
-  ): Promise<AccessControlClientGetRoleAssignmentByIdResponse> {
+  ): Promise<SynapseAccessControlGetRoleAssignmentByIdResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { roleAssignmentId, options: operationOptions },
       getRoleAssignmentByIdOperationSpec
-    ) as Promise<AccessControlClientGetRoleAssignmentByIdResponse>;
+    ) as Promise<SynapseAccessControlGetRoleAssignmentByIdResponse>;
   }
 
   /**
@@ -141,14 +141,14 @@ export class AccessControlClient extends AccessControlClientContext {
    */
   getCallerRoleAssignments(
     options?: coreHttp.OperationOptions
-  ): Promise<AccessControlClientGetCallerRoleAssignmentsResponse> {
+  ): Promise<SynapseAccessControlGetCallerRoleAssignmentsResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { options: operationOptions },
       getCallerRoleAssignmentsOperationSpec
-    ) as Promise<AccessControlClientGetCallerRoleAssignmentsResponse>;
+    ) as Promise<SynapseAccessControlGetCallerRoleAssignmentsResponse>;
   }
 
   /**
@@ -159,14 +159,14 @@ export class AccessControlClient extends AccessControlClientContext {
   getRoleDefinitionsNext(
     nextLink: string,
     options?: coreHttp.OperationOptions
-  ): Promise<AccessControlClientGetRoleDefinitionsNextResponse> {
+  ): Promise<SynapseAccessControlGetRoleDefinitionsNextResponse> {
     const operationOptions: coreHttp.RequestOptionsBase = coreHttp.operationOptionsToRequestOptionsBase(
       options || {}
     );
     return this.sendOperationRequest(
       { nextLink, options: operationOptions },
       getRoleDefinitionsNextOperationSpec
-    ) as Promise<AccessControlClientGetRoleDefinitionsNextResponse>;
+    ) as Promise<SynapseAccessControlGetRoleDefinitionsNextResponse>;
   }
 }
 // Operation Specifications
@@ -236,7 +236,7 @@ const getRoleAssignmentsOperationSpec: coreHttp.OperationSpec = {
           }
         }
       },
-      headersMapper: Mappers.AccessControlClientGetRoleAssignmentsHeaders
+      headersMapper: Mappers.SynapseAccessControlGetRoleAssignmentsHeaders
     },
     default: {
       bodyMapper: Mappers.ErrorContract
