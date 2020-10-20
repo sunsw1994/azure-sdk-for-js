@@ -9,7 +9,6 @@ export interface AccesscontrolClientOptions extends coreHttp.PipelineOptions {
   serviceVersion?: "7.0" | "7.1";
 }
 
-
 /**
  * Options for {@link getRoleDefinition}.
  */

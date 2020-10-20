@@ -1,7 +1,4 @@
-
-import {
-  DefaultAzureCredential
-} from "@azure/identity";
+import { DefaultAzureCredential } from "@azure/identity";
 
 // Load the .env file if it exists
 import * as dotenv from "dotenv";
@@ -33,12 +30,12 @@ export async function main() {
   // If those environment variables aren't found and your application is deployed
   // to an Azure VM or App Service instance, the managed service identity endpoint
   // will be used as a fallback authentication source.
-  
+
   const defaultAzureCredential = new DefaultAzureCredential();
 
   const accesscontrol = new AccessControlClient(
     "https://shangweiworkspacecli.dev.azuresynapse.net",
-     defaultAzureCredential
+    defaultAzureCredential
   );
 
   accesscontrol.getRoleDefinitionById("7af0c69a-a548-47d6-aea3-d00e69bd83aa").then((result) => {

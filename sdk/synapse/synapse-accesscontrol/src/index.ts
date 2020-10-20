@@ -17,22 +17,14 @@ import { SDK_VERSION } from "./constants";
 import { createSpan } from "./tracing";
 import { CanonicalCode } from "@opentelemetry/api";
 
-import {
-  AccesscontrolClientOptions,
-  GetRoleDefinitionOptions
-} from "./accesscontrolModels";
+import { AccesscontrolClientOptions, GetRoleDefinitionOptions } from "./accesscontrolModels";
 
-import {
-  SynapseRole
-} from "./generated/models";
+import { SynapseRole } from "./generated/models";
 
-export {
-  PipelineOptions,
-  logger
-};
+export { PipelineOptions, logger };
 
 export class AccessControlClient {
-    /**
+  /**
    * The base URL to the workspace
    */
   public readonly workspaceEndpoint: string;
@@ -44,7 +36,7 @@ export class AccessControlClient {
    */
   public readonly client: SynapseAccessControl;
 
-    /**
+  /**
    * Creates an instance of AccessControlClient.
    *
    * Example usage:
@@ -70,7 +62,7 @@ export class AccessControlClient {
   ) {
     this.workspaceEndpoint = workspaceEndpoint;
 
-    const libInfo  = `azsdk-js-synapse-accesscontrol/${SDK_VERSION}`;
+    const libInfo = `azsdk-js-synapse-accesscontrol/${SDK_VERSION}`;
 
     const userAgentOptions = pipelineOptions.userAgentOptions;
 
@@ -85,27 +77,23 @@ export class AccessControlClient {
     const authPolicy = bearerTokenAuthenticationPolicy(
       credential,
       "https://dev.azuresynapse.net/.default"
-      );
-    
+    );
+
     const internalPipelineOptions = {
       ...pipelineOptions,
       ...{
         loggingOptions: {
-          logger: logger.info,
+          logger: logger.info
         }
       }
     };
-    
+
     const pipeline = createPipelineFromOptions(internalPipelineOptions, authPolicy);
-    
-    this.client = new SynapseAccessControl(
-      credential,
-      workspaceEndpoint,
-      pipeline
-    );
+
+    this.client = new SynapseAccessControl(credential, workspaceEndpoint, pipeline);
   }
 
-    /**
+  /**
    * The getRoleDefinitionById method is applicable to any role definition defined by Synapse. This operation requires
    * the specified scope permission.
    *
@@ -134,7 +122,7 @@ export class AccessControlClient {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,
         message: e.message
-      })
+      });
       throw e;
     } finally {
       span.end();
