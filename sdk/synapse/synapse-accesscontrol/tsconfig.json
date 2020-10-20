@@ -1,0 +1,12 @@
+{
+  "extends": "../../../tsconfig.package",
+  "compilerOptions": {
+    "declarationDir": "./types",
+    "target": "es5",
+    "outDir": "./dist-esm",
+    "lib": ["dom"],
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules", "./samples/**/*.ts"],
+  "include": ["./src/**/*.ts", "./test/**/*.ts"]
+}
