@@ -3,7 +3,6 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import cjs from "@rollup/plugin-commonjs";
 import sourcemaps from "rollup-plugin-sourcemaps";
 
-
 /**
  * @type {rollup.RollupFileOptions}
  */
@@ -32,7 +31,7 @@ const config = {
       "@azure/core-http": "coreHttp",
       "@azure/core-arm": "coreArm"
     },
-    sourcemap: true,
+    sourcemap: true
   },
   preserveSymlinks: false,
   plugins: [
@@ -40,14 +39,15 @@ const config = {
       mainFields: ["module", "browser"],
       preferBuiltins: false
     }),
-    sourcemaps(), 
+    sourcemaps(),
     cjs({
-    namedExports: {
-      chai: ["assert"],
-      assert: ["ok", "equal", "strictEqual", "deepEqual", "throws"],
-      "@opentelemetry/api": ["CanonicalCode", "SpanKind", "TraceFlags"]
-    }
-  })]
+      namedExports: {
+        chai: ["assert"],
+        assert: ["ok", "equal", "strictEqual", "deepEqual", "throws"],
+        "@opentelemetry/api": ["CanonicalCode", "SpanKind", "TraceFlags"]
+      }
+    })
+  ]
 };
 
 export default config;
