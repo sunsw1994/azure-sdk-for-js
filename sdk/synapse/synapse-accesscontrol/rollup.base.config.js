@@ -15,27 +15,26 @@ const devDepNames = Object.keys(pkg.devDependencies);
 const input = "dist-esm/src/index.js";
 const production = process.env.NODE_ENV === "production";
 const banner = [
-    "/*!",
-    " * Copyright (c) Microsoft and contributors. All rights reserved.",
-    " * Licensed under the MIT License. See License.txt in the project root for",
-    " * license information.",
-    " * ",
-    ` * Azure Synapse Accesscontrol SDK for JavaScript - ${version}`,
-    " */"
-  ].join("\n");
-  
+  "/*!",
+  " * Copyright (c) Microsoft and contributors. All rights reserved.",
+  " * Licensed under the MIT License. See License.txt in the project root for",
+  " * license information.",
+  " * ",
+  ` * Azure Synapse Accesscontrol SDK for JavaScript - ${version}`,
+  " */"
+].join("\n");
 
 export function nodeConfig(test = false) {
   const externalNodeBuiltins = [];
   const baseConfig = {
     input: input,
     external: depNames.concat(externalNodeBuiltins),
-    output: { 
-      file: "dist/index.js", 
-      format: "cjs", 
+    output: {
+      file: "dist/index.js",
+      format: "cjs",
       sourcemap: true,
       banner: banner,
-      name: "azuresynapseaccesscontrol" 
+      name: "azuresynapseaccesscontrol"
     },
     preserveSymlinks: false,
     plugins: [
@@ -74,77 +73,77 @@ export function nodeConfig(test = false) {
 }
 
 export function browserConfig(test = false) {
-    const externalNodeBuiltins = ["@azure/core-arm"];
-    const baseConfig = {
-      input: input,
-      external: depNames.concat(externalNodeBuiltins),
-      output: {
-        file: "dist-browser/azure-synapse-accesscontrol.js",
-        banner: banner,
-        format: "umd",
-        name: "Azure.Synapse.Accesscontrol",
-        globals: {
-          "@azure/core-http": "Azure.Core.HTTP",
-          "@azure/core-arm": "Azure.Core.ARM"
-        },
-        sourcemap: true
+  const externalNodeBuiltins = ["@azure/core-arm"];
+  const baseConfig = {
+    input: input,
+    external: depNames.concat(externalNodeBuiltins),
+    output: {
+      file: "dist-browser/azure-synapse-accesscontrol.js",
+      banner: banner,
+      format: "umd",
+      name: "Azure.Synapse.Accesscontrol",
+      globals: {
+        "@azure/core-http": "Azure.Core.HTTP",
+        "@azure/core-arm": "Azure.Core.ARM"
       },
-      preserveSymlinks: false,
-      plugins: [
-        sourcemaps(),
-        replace({
-            delimiters: ["", ""],
-            values: {
-              // replace dynamic checks with if (false) since this is for
-              // browser only. Rollup's dead code elimination will remove
-              // any code guarded by if (isNode) { ... }
-              "if (isNode)": "if (false)"
-            }
-          }),
-        shim({
-          constants: `export default {}`,
-          fs: `export default {}`,
-          os: `export default {}`,
-          dotenv: `export function config() { }`,
-          path: `export default {}`
-        }),
-        nodeResolve({
-          mainFields: ["module", "browser"],
-          preferBuiltins: false
-        }),
-        cjs({
-            namedExports: {
-                chai: ["assert"],
-                assert: ["ok", "equal", "strictEqual", "deepEqual", "throws"],
-                "@opentelemetry/api": ["CanonicalCode", "SpanKind", "TraceFlags"]
-              }
-        })
-      ]
-    };
-  
-    if (test) {
-      // Entry points - test files under the `test` folder(common for both browser and node), browser specific test files
-      baseConfig.input = ["dist-esm/test/*.spec.js", "dist-esm/test/browser/*.spec.js"];
-      baseConfig.plugins.unshift(multiEntry({ exports: false }));
-      baseConfig.output.file = "dist-test/index.browser.js";
-  
-      baseConfig.onwarn = (warning) => {
-        if (
-          warning.code === "CIRCULAR_DEPENDENCY" &&
-          warning.importer.indexOf(path.normalize("node_modules/chai/lib") === 0)
-        ) {
-          // Chai contains circular references, but they are not fatal and can be ignored.
-          return;
+      sourcemap: true
+    },
+    preserveSymlinks: false,
+    plugins: [
+      sourcemaps(),
+      replace({
+        delimiters: ["", ""],
+        values: {
+          // replace dynamic checks with if (false) since this is for
+          // browser only. Rollup's dead code elimination will remove
+          // any code guarded by if (isNode) { ... }
+          "if (isNode)": "if (false)"
         }
-  
-        console.error(`(!) ${warning.message}`);
-      };
-  
-      // Disable tree-shaking of test code.  In rollup-plugin-node-resolve@5.0.0, rollup started respecting
-      // the "sideEffects" field in package.json.  Since our package.json sets "sideEffects=false", this also
-      // applies to test code, which causes all tests to be removed by tree-shaking.
-      baseConfig.treeshake = false;
-    }
-  
-    return baseConfig;
+      }),
+      shim({
+        constants: `export default {}`,
+        fs: `export default {}`,
+        os: `export default {}`,
+        dotenv: `export function config() { }`,
+        path: `export default {}`
+      }),
+      nodeResolve({
+        mainFields: ["module", "browser"],
+        preferBuiltins: false
+      }),
+      cjs({
+        namedExports: {
+          chai: ["assert"],
+          assert: ["ok", "equal", "strictEqual", "deepEqual", "throws"],
+          "@opentelemetry/api": ["CanonicalCode", "SpanKind", "TraceFlags"]
+        }
+      })
+    ]
+  };
+
+  if (test) {
+    // Entry points - test files under the `test` folder(common for both browser and node), browser specific test files
+    baseConfig.input = ["dist-esm/test/*.spec.js", "dist-esm/test/browser/*.spec.js"];
+    baseConfig.plugins.unshift(multiEntry({ exports: false }));
+    baseConfig.output.file = "dist-test/index.browser.js";
+
+    baseConfig.onwarn = (warning) => {
+      if (
+        warning.code === "CIRCULAR_DEPENDENCY" &&
+        warning.importer.indexOf(path.normalize("node_modules/chai/lib") === 0)
+      ) {
+        // Chai contains circular references, but they are not fatal and can be ignored.
+        return;
+      }
+
+      console.error(`(!) ${warning.message}`);
+    };
+
+    // Disable tree-shaking of test code.  In rollup-plugin-node-resolve@5.0.0, rollup started respecting
+    // the "sideEffects" field in package.json.  Since our package.json sets "sideEffects=false", this also
+    // applies to test code, which causes all tests to be removed by tree-shaking.
+    baseConfig.treeshake = false;
   }
+
+  return baseConfig;
+}

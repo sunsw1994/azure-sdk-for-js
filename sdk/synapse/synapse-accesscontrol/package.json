@@ -66,7 +66,6 @@
     "rimraf": "^3.0.0"
   },
   "homepage": "https://github.com/Azure/azure-sdk-for-js",
-  "prettier": "@azure/eslint-plugin-azure-sdk/prettier.json",
   "repository": {
     "type": "git",
     "url": "https://github.com/Azure/azure-sdk-for-js.git"
@@ -86,10 +85,10 @@
   "scripts": {
     "audit": "node ../../../common/scripts/rush-audit.js && rimraf node_modules package-lock.json && npm i --package-lock-only 2>&1 && npm audit",
     "build:node": "tsc -p . && cross-env ONLY_NODE=true rollup -c 2>&1",
-    "build:browser": "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1",  
+    "build:browser": "tsc -p . && cross-env ONLY_BROWSER=true rollup -c 2>&1",
     "build:es6": "tsc -p tsconfig.json",
     "build:nodebrowser": "rollup -c 2>&1",
-    "build:test": "npm run build:es6 && rollup -c rollup.test.config.js 2>&1",      
+    "build:test": "npm run build:es6 && rollup -c rollup.test.config.js 2>&1",
     "build": "npm run extract-api && npm run build:es6 && npm run build:nodebrowser",
     "check-format": "prettier --list-different \"src/**/*.ts\" \"test/**/*.ts\" \"*.{js,json}\"",
     "clean": "rimraf dist dist-* types *.tgz *.log",

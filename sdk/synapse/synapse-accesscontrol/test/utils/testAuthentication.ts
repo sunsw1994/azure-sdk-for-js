@@ -21,13 +21,12 @@ export async function authenticate(that: any): Promise<any> {
     queryParametersToSkip: []
   };
   const recorder = record(that, recorderEnvSetup);
-//   const credential = await new ClientSecretCredential(
-//     env.AZURE_TENANT_ID,
-//     env.AZURE_CLIENT_ID,
-//     env.AZURE_CLIENT_SECRET
-//   );
+  //   const credential = await new ClientSecretCredential(
+  //     env.AZURE_TENANT_ID,
+  //     env.AZURE_CLIENT_ID,
+  //     env.AZURE_CLIENT_SECRET
+  //   );
   const credential = new EnvironmentCredential();
-
 
   const worksapceName = getWorkspaceName();
   const workspaceEndpoint = `https://${worksapceName}.vault.azure.net`;
