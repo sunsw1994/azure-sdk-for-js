@@ -1,0 +1,9 @@
+{
+    "mode": "file",
+    "out": "../../../docGen/synapse-accesscontrol",
+    "excludeNotExported": true,
+    "excludePrivate": true,
+    "exclude": ["node_modules/**/*", "src/generated/**/*"],
+    "ignoreCompilerErrors": true
+  }
+  

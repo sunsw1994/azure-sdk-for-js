@@ -10,16 +10,24 @@ import { TokenCredential } from '@azure/core-http';
 
 // @public (undocumented)
 export class AccessControlClient {
-    // Warning: (ae-forgotten-export) The symbol "AccesscontrolClientOptions" needs to be exported by the entry point index.d.ts
     constructor(workspaceEndpoint: string, credential: TokenCredential, pipelineOptions?: AccesscontrolClientOptions);
     // Warning: (ae-forgotten-export) The symbol "SynapseAccessControl" needs to be exported by the entry point index.d.ts
     //
     // @internal
     readonly client: SynapseAccessControl;
-    // Warning: (ae-forgotten-export) The symbol "GetRoleDefinitionOptions" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "SynapseRole" needs to be exported by the entry point index.d.ts
     getRoleDefinitionById(roleId: string, options?: GetRoleDefinitionOptions): Promise<SynapseRole>;
     readonly workspaceEndpoint: string;
+}
+
+// @public (undocumented)
+export interface AccesscontrolClientOptions extends coreHttp.PipelineOptions {
+    serviceVersion?: "7.0" | "7.1";
+}
+
+// @public
+export interface GetRoleDefinitionOptions extends coreHttp.OperationOptions {
+    version?: string;
 }
 
 // @public
