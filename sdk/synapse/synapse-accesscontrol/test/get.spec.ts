@@ -2,8 +2,6 @@
 // Licensed under the MIT license.
 import { AccessControlClient } from "../src/AccessControlClient";
 import * as assert from "assert";
-import { add } from "./add";
-var expect = require("chai").expect;
 import { authenticate } from "./utils/testAuthentication";
 import { Recorder } from "@azure/test-utils-recorder";
 //import TestClient from "./utils/testClient";
@@ -21,10 +19,6 @@ describe("AccessControl Client - get role definition", () => {
 
   afterEach(async function() {
     await recorder.stop();
-  });
-
-  it("1 + 1 = 2", function() {
-    expect(add(1, 1)).to.be.equal(2);
   });
 
   it("can get role definition by id", async function() {

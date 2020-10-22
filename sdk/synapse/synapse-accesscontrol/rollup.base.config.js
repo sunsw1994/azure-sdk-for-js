@@ -25,7 +25,7 @@ const banner = [
 ].join("\n");
 
 export function nodeConfig(test = false) {
-  const externalNodeBuiltins = [];
+  const externalNodeBuiltins = ["fs", "crypto", "child_process", "os", "path", "stream", "util", "buffer"];
   const baseConfig = {
     input: input,
     external: depNames.concat(externalNodeBuiltins),
@@ -41,9 +41,11 @@ export function nodeConfig(test = false) {
       sourcemaps(),
       replace({
         delimiters: ["", ""],
-        // replace dynamic checks with if (true) since this is for node only.
-        // Allows rollup's dead code elimination to be more aggressive.
-        "if (isNode)": "if (true)"
+        values: {
+          // replace dynamic checks with if (true) since this is for node only.
+          // Allows rollup's dead code elimination to be more aggressive.
+          "if (isNode)": "if (true)"
+        }
       }),
       nodeResolve({ preferBuiltins: true }),
       cjs()
@@ -73,18 +75,20 @@ export function nodeConfig(test = false) {
 }
 
 export function browserConfig(test = false) {
-  const externalNodeBuiltins = ["@azure/core-arm"];
   const baseConfig = {
     input: input,
-    external: depNames.concat(externalNodeBuiltins),
     output: {
       file: "dist-browser/azure-synapse-accesscontrol.js",
       banner: banner,
       format: "umd",
       name: "Azure.Synapse.Accesscontrol",
       globals: {
-        "@azure/core-http": "Azure.Core.HTTP",
-        "@azure/core-arm": "Azure.Core.ARM"
+        "@azure/core-http": "AzureCoreHTTP",
+        "@azure/core-arm": "AzureCoreARM",
+        "@azure/core-tracing": "AzureCoreTracing",
+        "@opentelemetry/api": "OpentelemetryApi",
+        "tslib": "tslib",
+        "stream": "stream"
       },
       sourcemap: true
     },
@@ -117,7 +121,8 @@ export function browserConfig(test = false) {
           assert: ["ok", "equal", "strictEqual", "deepEqual", "throws"],
           "@opentelemetry/api": ["CanonicalCode", "SpanKind", "TraceFlags"]
         }
-      })
+      }),
+      viz({ filename: "dist-browser/browser-stats.html", sourcemap: false })
     ]
   };
 
@@ -126,6 +131,7 @@ export function browserConfig(test = false) {
     baseConfig.input = ["dist-esm/test/*.spec.js", "dist-esm/test/browser/*.spec.js"];
     baseConfig.plugins.unshift(multiEntry({ exports: false }));
     baseConfig.output.file = "dist-test/index.browser.js";
+    baseConfig.external = ["fs-extra", "path"];
 
     baseConfig.onwarn = (warning) => {
       if (

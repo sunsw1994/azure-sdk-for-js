@@ -31,19 +31,24 @@ module.exports = function(config) {
     files: [
       // polyfill service supporting IE11 missing features
       // Promise,String.prototype.startsWith,String.prototype.endsWith,String.prototype.repeat,String.prototype.includes,Array.prototype.includes,Object.keys
-      "https://cdn.polyfill.io/v2/polyfill.js?features=Promise,String.prototype.startsWith,String.prototype.endsWith,String.prototype.repeat,String.prototype.includes,Array.prototype.includes,Object.keys|always",
+      //"https://cdn.polyfill.io/v2/polyfill.js?features=Promise,String.prototype.startsWith,String.prototype.endsWith,String.prototype.repeat,String.prototype.includes,Array.prototype.includes,Object.keys|always",
       "dist-test/index.browser.js",
-      { pattern: "dist-test/index.browser.js.map", type: "html", included: false, served: true }
+      //{ pattern: "dist-test/index.browser.js.map", type: "html", included: false, served: true }
     ].concat(isPlaybackMode() || isSoftRecordMode() ? ["recordings/browsers/**/*.json"] : []),
 
     exclude: [],
 
     preprocessors: {
       "**/*.js": ["env"],
-      "dist-test/index.browser.js": ["coverage"],
       "recordings/browsers/**/*.json": ["json"]
+      // IMPORTANT: COMMENT following line if you want to debug in your browsers!!
+      // Preprocess source file to calculate code coverage, however this will make source file unreadable
+      //"test-browser/index.js": ["coverage"]
     },
 
+    // inject following environment values into browser testing with window.__env__
+    // environment values MUST be exported or set with same console running "karma start"
+    // https://www.npmjs.com/package/karma-env-preprocessor
     envPreprocessor: [
       "AZURE_CLIENT_ID",
       "AZURE_CLIENT_SECRET",
@@ -52,6 +57,9 @@ module.exports = function(config) {
       "TEST_MODE"
     ],
 
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter    
     reporters: ["mocha", "coverage", "karma-remap-istanbul", "junit", "json-to-file"],
 
     coverageReporter: {
@@ -71,13 +79,13 @@ module.exports = function(config) {
     },
 
     junitReporter: {
-      outputDir: "",
-      outputFile: "test-results.browser.xml",
-      suite: "",
-      useBrowserName: false,
-      nameFormatter: undefined,
-      classNameFormatter: undefined,
-      properties: {}
+      outputDir: "", // results will be saved as $outputDir/$browserName.xml
+      outputFile: "test-results.browser.xml", // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: "", // suite will become the package name attribute in xml testsuite element
+      useBrowserName: false, // add browser name to report and classes names
+      nameFormatter: undefined, // function (browser, result) to customize the name attribute in xml testcase element
+      classNameFormatter: undefined, // function (browser, result) to customize the classname attribute in xml testcase element
+      properties: {} // key value pair of properties to add to the <properties> section of the report
     },
 
     jsonToFileReporter: {
@@ -86,10 +94,18 @@ module.exports = function(config) {
       outputPath: "."
     },
 
-    port: 9330,
+    // web server port    
+    port: 9988,
+
+    // enable / disable colors in the output (reporters and logs)    
     colors: true,
+
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: false,    
 
     // --no-sandbox allows our tests to run in Linux without having to change the system.
     // --disable-web-security allows us to authenticate from the browser without having to write tests using interactive auth, which would be far more complex.
@@ -101,14 +117,19 @@ module.exports = function(config) {
       }
     },
 
-    singleRun: false,
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: true,
+
+    // Concurrency level
+    // how many browser should be started simultaneous    
     concurrency: 1,
 
     browserNoActivityTimeout: 180000,
     browserDisconnectTimeout: 10000,
     browserDisconnectTolerance: 3,
     browserConsoleLogOptions: {
-      // IMPORTANT: COMMENT the following line if you want to print debug logs in your browsers in record mode!!
+      // IMPORTANT COMMENT: the following line if you want to print debug logs in your browsers in record mode!!
       terminal: !isRecordMode()
     },
 

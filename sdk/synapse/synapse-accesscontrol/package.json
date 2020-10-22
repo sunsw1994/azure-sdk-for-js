@@ -4,6 +4,7 @@
   "description": "A generated SDK for SynapseAccessControl.",
   "version": "1.0.0",
   "dependencies": {
+    "@azure/abort-controller": "^1.0.0",
     "@azure/core-http": "^1.1.6",
     "tslib": "^2.0.0",
     "@opentelemetry/api": "^0.10.2",
@@ -23,6 +24,7 @@
   "module": "./dist-esm/src/index.js",
   "types": "./types/synapse-accesscontrol.d.ts",
   "devDependencies": {
+    "@azure/identity": "^1.1.0",
     "@azure/test-utils-recorder": "^1.0.0",
     "typescript": "~3.9.3",
     "rollup": "^1.16.3",
@@ -63,7 +65,20 @@
     "eslint": "^6.1.0",
     "inherits": "^2.0.3",
     "prettier": "^1.16.4",
-    "rimraf": "^3.0.0"
+    "rimraf": "^3.0.0",
+    "@azure/dev-tool": "^1.0.0",
+    "@azure/eslint-plugin-azure-sdk": "^3.0.0",
+    "@rollup/plugin-replace": "^2.2.0",
+    "@types/fs-extra": "^8.0.0",
+    "@types/query-string": "6.2.0",
+    "esm": "^3.2.18",
+    "fs-extra": "^8.1.0",
+    "nyc": "^14.0.0",
+    "puppeteer": "^3.3.0",
+    "query-string": "^5.0.0",
+    "sinon": "^9.0.2",
+    "source-map-support": "^0.5.9",
+    "url": "^0.11.0"
   },
   "homepage": "https://github.com/Azure/azure-sdk-for-js",
   "repository": {
@@ -77,7 +92,6 @@
     "types/synapse-accesscontrol.d.ts",
     "dist/",
     "dist-browser/",
-    "dist-esm/src",
     "dist-esm/src",
     "README.md",
     "LICENSE"
@@ -94,8 +108,9 @@
     "clean": "rimraf dist dist-* types *.tgz *.log",
     "extract-api": "tsc -p . && api-extractor run --local",
     "format": "prettier --write --config ../../../.prettierrc.json --ignore-path ../../../.prettierignore \"src/**/*.ts\" \"test/**/*.ts\" \"*.{js,json}\"",
-    "lint:fix": "eslint package.json api-extractor.json src test --ext .ts --fix --fix-type [problem,suggestion]",
-    "lint": "eslint package.json api-extractor.json src test --ext .ts",
+    "generate-doc": "api-documenter markdown -i temp -o docGen",
+    "lint:fix": "eslint package.json tsconfig.json api-extractor.json src test --ext .ts --fix --fix-type [problem,suggestion]",
+    "lint": "eslint package.json tsconfig.json api-extractor.json src test --ext .ts -f html -o synapse-accesscontrol-lintReport.html || exit 0",
     "test:browser": "npm run clean && npm run build:test && npm run unit-test:browser",
     "test:node": "npm run clean && npm run build:test && npm run unit-test:node",
     "test": "npm run clean && npm run build:test && npm run unit-test",
@@ -103,6 +118,5 @@
     "unit-test:node": "mocha --reporter ../../../common/tools/mocha-multi-reporter.js dist-test/index.node.js",
     "prepack": "npm install && npm run build"
   },
-  "sideEffects": false,
-  "autoPublish": true
+  "sideEffects": false
 }
