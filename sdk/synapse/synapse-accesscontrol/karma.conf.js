@@ -32,7 +32,7 @@ module.exports = function(config) {
       // polyfill service supporting IE11 missing features
       // Promise,String.prototype.startsWith,String.prototype.endsWith,String.prototype.repeat,String.prototype.includes,Array.prototype.includes,Object.keys
       //"https://cdn.polyfill.io/v2/polyfill.js?features=Promise,String.prototype.startsWith,String.prototype.endsWith,String.prototype.repeat,String.prototype.includes,Array.prototype.includes,Object.keys|always",
-      "dist-test/index.browser.js",
+      "dist-test/index.browser.js"
       //{ pattern: "dist-test/index.browser.js.map", type: "html", included: false, served: true }
     ].concat(isPlaybackMode() || isSoftRecordMode() ? ["recordings/browsers/**/*.json"] : []),
 
@@ -59,7 +59,7 @@ module.exports = function(config) {
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter    
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: ["mocha", "coverage", "karma-remap-istanbul", "junit", "json-to-file"],
 
     coverageReporter: {
@@ -94,10 +94,10 @@ module.exports = function(config) {
       outputPath: "."
     },
 
-    // web server port    
+    // web server port
     port: 9988,
 
-    // enable / disable colors in the output (reporters and logs)    
+    // enable / disable colors in the output (reporters and logs)
     colors: true,
 
     // level of logging
@@ -105,7 +105,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,    
+    autoWatch: false,
 
     // --no-sandbox allows our tests to run in Linux without having to change the system.
     // --disable-web-security allows us to authenticate from the browser without having to write tests using interactive auth, which would be far more complex.
@@ -122,7 +122,7 @@ module.exports = function(config) {
     singleRun: true,
 
     // Concurrency level
-    // how many browser should be started simultaneous    
+    // how many browser should be started simultaneous
     concurrency: 1,
 
     browserNoActivityTimeout: 180000,

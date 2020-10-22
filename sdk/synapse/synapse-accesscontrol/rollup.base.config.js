@@ -25,7 +25,16 @@ const banner = [
 ].join("\n");
 
 export function nodeConfig(test = false) {
-  const externalNodeBuiltins = ["fs", "crypto", "child_process", "os", "path", "stream", "util", "buffer"];
+  const externalNodeBuiltins = [
+    "fs",
+    "crypto",
+    "child_process",
+    "os",
+    "path",
+    "stream",
+    "util",
+    "buffer"
+  ];
   const baseConfig = {
     input: input,
     external: depNames.concat(externalNodeBuiltins),
@@ -87,8 +96,8 @@ export function browserConfig(test = false) {
         "@azure/core-arm": "AzureCoreARM",
         "@azure/core-tracing": "AzureCoreTracing",
         "@opentelemetry/api": "OpentelemetryApi",
-        "tslib": "tslib",
-        "stream": "stream"
+        tslib: "tslib",
+        stream: "stream"
       },
       sourcemap: true
     },
