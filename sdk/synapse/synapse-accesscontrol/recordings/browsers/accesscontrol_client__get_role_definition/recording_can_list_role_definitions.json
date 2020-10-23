@@ -11,34 +11,34 @@
     "cache-control": "no-store, no-cache",
     "content-length": "1322",
     "content-type": "application/json; charset=utf-8",
-    "date": "Fri, 23 Oct 2020 06:45:21 GMT",
+    "date": "Fri, 23 Oct 2020 06:45:23 GMT",
     "expires": "-1",
     "p3p": "CP=\"DSP CUR OTPi IND OTRi ONL FIN\"",
     "pragma": "no-cache",
     "referrer-policy": "strict-origin-when-cross-origin",
     "strict-transport-security": "max-age=31536000; includeSubDomains",
     "x-content-type-options": "nosniff",
-    "x-ms-ests-server": "2.1.11169.11 - EASLR2 ProdSlices",
-    "x-ms-request-id": "10567704-5b90-4991-acaf-9dead6160900"
+    "x-ms-ests-server": "2.1.11169.11 - SEASLR2 ProdSlices",
+    "x-ms-request-id": "963ee755-6635-4bfc-ba0c-973cc5b10300"
    }
   },
   {
    "method": "GET",
-   "url": "https://workspace_name.dev.azuresynapse.net/rbac/roles/7af0c69a-a548-47d6-aea3-d00e69bd83aa",
+   "url": "https://workspace_name.dev.azuresynapse.net/rbac/roles",
    "query": {
     "api-version": "2020-02-01-preview"
    },
    "requestBody": null,
    "status": 200,
-   "response": "{\"id\":\"7af0c69a-a548-47d6-aea3-d00e69bd83aa\",\"name\":\"Sql Admin\",\"isBuiltIn\":true}",
+   "response": "{\"value\":[{\"id\":\"6e4bf58a-b8e1-4cc3-bbf9-d73143322b78\",\"name\":\"Workspace Admin\",\"isBuiltIn\":true},{\"id\":\"c3a6d2f1-a26f-4810-9b0f-591308d5cbf1\",\"name\":\"Apache Spark Admin\",\"isBuiltIn\":true},{\"id\":\"7af0c69a-a548-47d6-aea3-d00e69bd83aa\",\"name\":\"Sql Admin\",\"isBuiltIn\":true},{\"id\":\"24fa9e0a-d130-4536-9f92-8b976b16986b\",\"name\":\"Scope Admin\",\"isBuiltIn\":true}]}",
    "responseHeaders": {
-    "content-length": "81",
+    "content-length": "356",
     "content-type": "application/json; charset=utf-8",
     "date": "Fri, 23 Oct 2020 06:45:23 GMT",
     "server": "Microsoft-HTTPAPI/2.0 Microsoft-HTTPAPI/2.0",
     "status": "200",
     "strict-transport-security": "max-age=31536000; includeSubDomains",
-    "x-ms-request-id": "e3cad3aa-ac36-47bc-b31d-65a76ff2c6d2, e3cad3aa-ac36-47bc-b31d-65a76ff2c6d2"
+    "x-ms-request-id": "a228ce84-2639-435a-b558-f4c5f5117a20, a228ce84-2639-435a-b558-f4c5f5117a20"
    }
   }
  ],
@@ -46,5 +46,5 @@
   "uniqueName": {},
   "newDate": {}
  },
- "hash": "a7fa747c013f62158c7713389c87465f"
+ "hash": "43cadfa0986d385bbfce7b991e9ec954"
 }

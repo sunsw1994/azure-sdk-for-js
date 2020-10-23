@@ -42,14 +42,6 @@ export async function main() {
     console.log("the result is:");
     console.log(result);
   });
-  // accesscontrol.client.getRoleDefinitionById("7af0c69a-a548-47d6-aea3-d00e69bd83aa").then((result) => {
-  //   console.log("the result is:");
-  //   console.log(result);
-  // });
-  accesscontrol.client.getRoleDefinitions().then((result) => {
-    console.log("the result is:");
-    console.log(result);
-  });
 }
 
 main().catch((err) => {

@@ -5,30 +5,52 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
+import { OperationOptions } from '@azure/core-http';
+import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PipelineOptions } from '@azure/core-http';
 import { TokenCredential } from '@azure/core-http';
 
 // @public (undocumented)
 export class AccessControlClient {
     constructor(workspaceEndpoint: string, credential: TokenCredential, pipelineOptions?: AccesscontrolClientOptions);
-    // Warning: (ae-forgotten-export) The symbol "SynapseAccessControl" needs to be exported by the entry point index.d.ts
-    //
-    // @internal
-    readonly client: SynapseAccessControl;
+    getRoleDefinitionById(roleId: string, options?: GetRoleDefinitionOptions): Promise<GetRoleDefinitionByIdResponse>;
     // Warning: (ae-forgotten-export) The symbol "SynapseRole" needs to be exported by the entry point index.d.ts
-    getRoleDefinitionById(roleId: string, options?: GetRoleDefinitionOptions): Promise<SynapseRole>;
+    listRoleDefinitions(options?: ListRoleDefinitionOptions): PagedAsyncIterableIterator<SynapseRole>;
     readonly workspaceEndpoint: string;
 }
 
-// @public (undocumented)
-export interface AccesscontrolClientOptions extends coreHttp.PipelineOptions {
-    serviceVersion?: "7.0" | "7.1";
+// @public
+export interface AccesscontrolClientOptions extends PipelineOptions {
 }
 
 // @public
-export interface GetRoleDefinitionOptions extends coreHttp.OperationOptions {
-    version?: string;
+export type GetRoleDefinitionByIdResponse = SynapseRole & {
+    _response: coreHttp.HttpResponse & {
+        bodyAsText: string;
+        parsedBody: SynapseRole;
+    };
+};
+
+// @public
+export type GetRoleDefinitionOptions = OperationOptions;
+
+// @public
+export interface ListPageSettings {
+    continuationToken?: string;
 }
+
+// @public
+export type ListRoleDefinitionOptions = OperationOptions;
+
+// Warning: (ae-forgotten-export) The symbol "RolesListResponse" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type ListRoleDefinitionsResponse = RolesListResponse & {
+    _response: coreHttp.HttpResponse & {
+        bodyAsText: string;
+        parsedBody: RolesListResponse;
+    };
+};
 
 // @public
 export const logger: import("@azure/logger").AzureLogger;

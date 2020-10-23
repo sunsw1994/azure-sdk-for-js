@@ -1,6 +1,6 @@
 let nock = require('nock');
 
-module.exports.hash = "8ea9aacabe77e86c788e92ef27791c5d";
+module.exports.hash = "68f5517908985f6a128623bddb8bfe04";
 
 module.exports.testInfo = {"uniqueName":{},"newDate":{}}
 
@@ -22,27 +22,27 @@ nock('https://login.microsoftonline.com:443', {"encodedQueryParams":true})
   'P3P',
   'CP="DSP CUR OTPi IND OTRi ONL FIN"',
   'x-ms-request-id',
-  'd7d9d776-c7e1-45da-bfe3-13cbf0640200',
+  '10567704-5b90-4991-acaf-9dea83160900',
   'x-ms-ests-server',
   '2.1.11169.11 - EASLR2 ProdSlices',
   'Set-Cookie',
-  'fpc=AoZLoSljTKVOiw1VRQps6pVJ0eYvAQAAAPRyJNcOAAAA; expires=Sun, 22-Nov-2020 06:45:08 GMT; path=/; secure; HttpOnly; SameSite=None',
+  'fpc=AuYbn8UoS5hFkAA0hsR4bhZJ0eYvAQAAAPVyJNcOAAAA; expires=Sun, 22-Nov-2020 06:45:10 GMT; path=/; secure; HttpOnly; SameSite=None',
   'Set-Cookie',
   'x-ms-gateway-slice=estsfd; path=/; secure; samesite=none; httponly',
   'Set-Cookie',
   'stsservicecookie=estsfd; path=/; secure; samesite=none; httponly',
   'Date',
-  'Fri, 23 Oct 2020 06:45:08 GMT',
+  'Fri, 23 Oct 2020 06:45:09 GMT',
   'Content-Length',
   '1322'
 ]);
 
 nock('https://workspace_name.dev.azuresynapse.net:443', {"encodedQueryParams":true})
-  .get('/rbac/roles/7af0c69a-a548-47d6-aea3-d00e69bd83aa')
+  .get('/rbac/roles')
   .query(true)
-  .reply(200, {"id":"7af0c69a-a548-47d6-aea3-d00e69bd83aa","name":"Sql Admin","isBuiltIn":true}, [
+  .reply(200, {"value":[{"id":"6e4bf58a-b8e1-4cc3-bbf9-d73143322b78","name":"Workspace Admin","isBuiltIn":true},{"id":"c3a6d2f1-a26f-4810-9b0f-591308d5cbf1","name":"Apache Spark Admin","isBuiltIn":true},{"id":"7af0c69a-a548-47d6-aea3-d00e69bd83aa","name":"Sql Admin","isBuiltIn":true},{"id":"24fa9e0a-d130-4536-9f92-8b976b16986b","name":"Scope Admin","isBuiltIn":true}]}, [
   'Content-Length',
-  '81',
+  '356',
   'Content-Type',
   'application/json; charset=utf-8',
   'Server',
@@ -50,9 +50,9 @@ nock('https://workspace_name.dev.azuresynapse.net:443', {"encodedQueryParams":tr
   'Strict-Transport-Security',
   'max-age=31536000; includeSubDomains',
   'x-ms-request-id',
-  '668653d1-038f-444f-9f51-1c92808ddcbb',
+  '9a46bfb0-e240-449b-af74-3591eda602c5',
   'x-ms-request-id',
-  '668653d1-038f-444f-9f51-1c92808ddcbb',
+  '9a46bfb0-e240-449b-af74-3591eda602c5',
   'Date',
-  'Fri, 23 Oct 2020 06:45:09 GMT'
+  'Fri, 23 Oct 2020 06:45:10 GMT'
 ]);
