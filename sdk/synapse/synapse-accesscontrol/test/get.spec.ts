@@ -39,5 +39,4 @@ describe("AccessControl Client - get role definition", () => {
 
     //assert.include()
   });
-
 });

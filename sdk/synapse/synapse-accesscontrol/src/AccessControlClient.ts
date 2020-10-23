@@ -18,24 +18,16 @@ import { createSpan } from "./tracing";
 import { CanonicalCode } from "@opentelemetry/api";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
-import { 
-  AccesscontrolClientOptions, 
+import {
+  AccesscontrolClientOptions,
   GetRoleDefinitionOptions,
   ListRoleDefinitionOptions,
   ListPageSettings
-
 } from "./models";
 
-import { 
-  GetRoleDefinitionByIdResponse
+import { GetRoleDefinitionByIdResponse } from "./models";
 
-
-} from "./models";
-
-import {
-  SynapseRole
-} from "./generated/models"
-
+import { SynapseRole } from "./generated/models";
 
 export { PipelineOptions, logger };
 
@@ -171,7 +163,6 @@ export class AccessControlClient {
       }
     }
   }
-
 
   private async *listRoleDefinitionsAll(
     options: ListRoleDefinitionOptions

@@ -8,22 +8,17 @@ import {
   SynapseAccessControlGetRoleDefinitionsResponse as ListRoleDefinitionsResponse
 } from "./generated/models";
 
-export {
-  GetRoleDefinitionByIdResponse,
-  ListRoleDefinitionsResponse
-}
+export { GetRoleDefinitionByIdResponse, ListRoleDefinitionsResponse };
 
 /**
  * Options to create accesscontrol client.
  */
 export interface AccesscontrolClientOptions extends PipelineOptions {}
 
-
 /**
  * Options to get a role definition.
  */
 export type GetRoleDefinitionOptions = OperationOptions;
-
 
 /**
  * Options to list role definitions.
