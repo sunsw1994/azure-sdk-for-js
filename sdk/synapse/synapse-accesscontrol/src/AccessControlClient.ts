@@ -16,10 +16,26 @@ import { logger } from "./logger";
 import { SDK_VERSION } from "./constants";
 import { createSpan } from "./tracing";
 import { CanonicalCode } from "@opentelemetry/api";
+import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
-import { AccesscontrolClientOptions, GetRoleDefinitionOptions } from "./models";
+import { 
+  AccesscontrolClientOptions, 
+  GetRoleDefinitionOptions,
+  ListRoleDefinitionOptions,
+  ListPageSettings
 
-import { SynapseRole } from "./generated/models";
+} from "./models";
+
+import { 
+  GetRoleDefinitionByIdResponse
+
+
+} from "./models";
+
+import {
+  SynapseRole
+} from "./generated/models"
+
 
 export { PipelineOptions, logger };
 
@@ -34,7 +50,7 @@ export class AccessControlClient {
    * @ignore
    * A reference to the auto-generated synapse accesscontrol HTTP client.
    */
-  public readonly client: SynapseAccessControl;
+  private readonly client: SynapseAccessControl;
 
   /**
    * Creates an instance of AccessControlClient.
@@ -109,8 +125,8 @@ export class AccessControlClient {
   public async getRoleDefinitionById(
     roleId: string,
     options: GetRoleDefinitionOptions = {}
-  ): Promise<SynapseRole> {
-    const { span, updatedOptions } = createSpan("GetRoleDefinitionOptions", options);
+  ): Promise<GetRoleDefinitionByIdResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-GetRoleDefinition", options);
 
     try {
       const response = await this.client.getRoleDefinitionById(
@@ -118,6 +134,82 @@ export class AccessControlClient {
         operationOptionsToRequestOptionsBase(updatedOptions)
       );
       return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+  private async *listRoleDefinitionsPage(
+    continuationState: ListPageSettings,
+    options: ListRoleDefinitionOptions = {}
+  ): AsyncIterableIterator<SynapseRole[]> {
+    const requestOptions = operationOptionsToRequestOptionsBase(options);
+    if (!continuationState.continuationToken) {
+      const currentSetResponse = await this.client.getRoleDefinitions(requestOptions);
+      continuationState.continuationToken = currentSetResponse.nextLink;
+      if (currentSetResponse.value) {
+        yield currentSetResponse.value;
+      }
+    }
+
+    while (continuationState.continuationToken) {
+      const currentSetResponse = await this.client.getRoleDefinitionsNext(
+        continuationState.continuationToken,
+        requestOptions
+      );
+      continuationState.continuationToken = currentSetResponse.nextLink;
+      if (currentSetResponse.value) {
+        yield currentSetResponse.value;
+      } else {
+        break;
+      }
+    }
+  }
+
+
+  private async *listRoleDefinitionsAll(
+    options: ListRoleDefinitionOptions
+  ): AsyncIterableIterator<SynapseRole> {
+    for await (const page of this.listRoleDefinitionsPage({}, options)) {
+      yield* page;
+    }
+  }
+
+  /**
+   * The getRoleDefinitions method is applicable to any role definition defined by Synapse. This operation requires
+   * the specified scope permission.
+   *
+   * Example usage:
+   * ```ts
+   * let client = new AccessControlClient(endpoint, credentials);
+   * let roleDefinition = await client.getRoleDefinitions();
+   * ```
+   * @summary List role definition from a given scope.
+   * @param {GetRoleDefinitionOptions} [options] The optional parameters.
+   */
+  public listRoleDefinitions(
+    options: ListRoleDefinitionOptions = {}
+  ): PagedAsyncIterableIterator<SynapseRole> {
+    const { span, updatedOptions } = createSpan("Synapse-ListRoleDefinition", options);
+    try {
+      const iter = this.listRoleDefinitionsAll(updatedOptions);
+      return {
+        next() {
+          return iter.next();
+        },
+        [Symbol.asyncIterator]() {
+          return this;
+        },
+        byPage: (settings: ListPageSettings = {}) => {
+          return this.listRoleDefinitionsPage(settings, updatedOptions);
+        }
+      };
     } catch (e) {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,

@@ -1,20 +1,42 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT license.
 
-import * as coreHttp from "@azure/core-http";
-export interface AccesscontrolClientOptions extends coreHttp.PipelineOptions {
-  /**
-   * The accepted versions of the KeyVault's service API.
-   */
-  serviceVersion?: "7.0" | "7.1";
+import { PipelineOptions, OperationOptions } from "@azure/core-http";
+
+import {
+  SynapseAccessControlGetRoleDefinitionByIdResponse as GetRoleDefinitionByIdResponse,
+  SynapseAccessControlGetRoleDefinitionsResponse as ListRoleDefinitionsResponse
+} from "./generated/models";
+
+export {
+  GetRoleDefinitionByIdResponse,
+  ListRoleDefinitionsResponse
 }
 
 /**
- * Options for {@link getRoleDefinition}.
+ * Options to create accesscontrol client.
  */
-export interface GetRoleDefinitionOptions extends coreHttp.OperationOptions {
+export interface AccesscontrolClientOptions extends PipelineOptions {}
+
+
+/**
+ * Options to get a role definition.
+ */
+export type GetRoleDefinitionOptions = OperationOptions;
+
+
+/**
+ * Options to list role definitions.
+ */
+export type ListRoleDefinitionOptions = OperationOptions;
+
+/**
+ * Arguments for retrieving the next page of search results.
+ */
+export interface ListPageSettings {
   /**
-   * The version of the role definition to retrieve.
+   * A token used for retrieving the next page of results when the server
+   * enforces pagination.
    */
-  version?: string;
+  continuationToken?: string;
 }
