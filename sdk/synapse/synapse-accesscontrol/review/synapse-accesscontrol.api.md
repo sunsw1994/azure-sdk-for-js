@@ -5,6 +5,7 @@
 ```ts
 
 import * as coreHttp from '@azure/core-http';
+import { HttpResponse } from '@azure/core-http';
 import { OperationOptions } from '@azure/core-http';
 import { PagedAsyncIterableIterator } from '@azure/core-paging';
 import { PipelineOptions } from '@azure/core-http';
@@ -13,7 +14,12 @@ import { TokenCredential } from '@azure/core-http';
 // @public (undocumented)
 export class AccessControlClient {
     constructor(workspaceEndpoint: string, credential: TokenCredential, pipelineOptions?: AccesscontrolClientOptions);
+    createRoleAssignment(roleId: string, principalId: string, options?: CreateRoleAssignmentOptions): Promise<CreateRoleAssignmentResponse>;
+    deleteRoleAssignmentById(roleAssignmentId: string, options?: DeleteRoleAssignmentOptions): Promise<OperationResponse>;
+    getCallerRoleAssignments(options?: GetCallerRoleAssignmentsOptions): Promise<GetCallerRoleAssignmentsResponse>;
+    getRoleAssignmentById(roleAssignmentId: string, options?: GetRoleAssignmentOptions): Promise<GetRoleAssignmentByIdResponse>;
     getRoleDefinitionById(roleId: string, options?: GetRoleDefinitionOptions): Promise<GetRoleDefinitionByIdResponse>;
+    listRoleAssignments(roleId?: string, principalId?: string, options?: ListRoleAssignmentsOptions): Promise<ListRoleAssignmentsResponse>;
     // Warning: (ae-forgotten-export) The symbol "SynapseRole" needs to be exported by the entry point index.d.ts
     listRoleDefinitions(options?: ListRoleDefinitionOptions): PagedAsyncIterableIterator<SynapseRole>;
     readonly workspaceEndpoint: string;
@@ -22,6 +28,45 @@ export class AccessControlClient {
 // @public
 export interface AccesscontrolClientOptions extends PipelineOptions {
 }
+
+// @public
+export type CreateRoleAssignmentOptions = OperationOptions;
+
+// Warning: (ae-forgotten-export) The symbol "RoleAssignmentDetails" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type CreateRoleAssignmentResponse = RoleAssignmentDetails & {
+    _response: coreHttp.HttpResponse & {
+        bodyAsText: string;
+        parsedBody: RoleAssignmentDetails;
+    };
+};
+
+// @public
+export type DeleteRoleAssignmentOptions = OperationOptions;
+
+// @public
+export type GetCallerRoleAssignmentsOptions = OperationOptions;
+
+// @public
+export type GetCallerRoleAssignmentsResponse = {
+    body: string[];
+    _response: coreHttp.HttpResponse & {
+        bodyAsText: string;
+        parsedBody: string[];
+    };
+};
+
+// @public
+export type GetRoleAssignmentByIdResponse = RoleAssignmentDetails & {
+    _response: coreHttp.HttpResponse & {
+        bodyAsText: string;
+        parsedBody: RoleAssignmentDetails;
+    };
+};
+
+// @public
+export type GetRoleAssignmentOptions = OperationOptions;
 
 // @public
 export type GetRoleDefinitionByIdResponse = SynapseRole & {
@@ -40,6 +85,24 @@ export interface ListPageSettings {
 }
 
 // @public
+export interface ListRoleAssignmentsOptions extends coreHttp.OperationOptions {
+    continuationToken?: string;
+    principalId?: string;
+    roleId?: string;
+}
+
+// Warning: (ae-forgotten-export) The symbol "SynapseAccessControlGetRoleAssignmentsHeaders" needs to be exported by the entry point index.d.ts
+//
+// @public
+export type ListRoleAssignmentsResponse = SynapseAccessControlGetRoleAssignmentsHeaders & RoleAssignmentDetails[] & {
+    _response: coreHttp.HttpResponse & {
+        bodyAsText: string;
+        parsedBody: RoleAssignmentDetails[];
+        parsedHeaders: SynapseAccessControlGetRoleAssignmentsHeaders;
+    };
+};
+
+// @public
 export type ListRoleDefinitionOptions = OperationOptions;
 
 // Warning: (ae-forgotten-export) The symbol "RolesListResponse" needs to be exported by the entry point index.d.ts
@@ -55,7 +118,22 @@ export type ListRoleDefinitionsResponse = RolesListResponse & {
 // @public
 export const logger: import("@azure/logger").AzureLogger;
 
+// @public
+export interface OperationResponse {
+    _response: HttpResponse;
+}
+
 export { PipelineOptions }
+
+// @public (undocumented)
+export interface RoleAssignmentsListResponse {
+    value: string[];
+}
+
+// @public
+export type WithResponse<T> = T & {
+    _response: HttpResponse;
+};
 
 
 // (No @packageDocumentation comment for this package)

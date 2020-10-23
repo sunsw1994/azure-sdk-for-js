@@ -18,24 +18,28 @@ import { createSpan } from "./tracing";
 import { CanonicalCode } from "@opentelemetry/api";
 import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
-import { 
-  AccesscontrolClientOptions, 
+import {
+  AccesscontrolClientOptions,
   GetRoleDefinitionOptions,
   ListRoleDefinitionOptions,
-  ListPageSettings
-
+  CreateRoleAssignmentOptions,
+  ListRoleAssignmentsOptions,
+  GetRoleAssignmentOptions,
+  ListPageSettings,
+  OperationResponse,
+  DeleteRoleAssignmentOptions,
+  GetCallerRoleAssignmentsOptions
 } from "./models";
 
 import { 
-  GetRoleDefinitionByIdResponse
-
-
+  GetRoleDefinitionByIdResponse, 
+  CreateRoleAssignmentResponse,
+  ListRoleAssignmentsResponse,
+  GetRoleAssignmentByIdResponse,
+  GetCallerRoleAssignmentsResponse
 } from "./models";
 
-import {
-  SynapseRole
-} from "./generated/models"
-
+import { SynapseRole } from "./generated/models";
 
 export { PipelineOptions, logger };
 
@@ -172,7 +176,6 @@ export class AccessControlClient {
     }
   }
 
-
   private async *listRoleDefinitionsAll(
     options: ListRoleDefinitionOptions
   ): AsyncIterableIterator<SynapseRole> {
@@ -182,13 +185,13 @@ export class AccessControlClient {
   }
 
   /**
-   * The getRoleDefinitions method is applicable to any role definition defined by Synapse. This operation requires
+   * The listRoleDefinitions method is applicable to any role definition defined by Synapse. This operation requires
    * the specified scope permission.
    *
    * Example usage:
    * ```ts
    * let client = new AccessControlClient(endpoint, credentials);
-   * let roleDefinition = await client.getRoleDefinitions();
+   * let roleDefinition = await client.listRoleDefinitions();
    * ```
    * @summary List role definition from a given scope.
    * @param {GetRoleDefinitionOptions} [options] The optional parameters.
@@ -210,6 +213,192 @@ export class AccessControlClient {
           return this.listRoleDefinitionsPage(settings, updatedOptions);
         }
       };
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+  /**
+   * The createRoleAssignment method is applicable to any role definition defined by Synapse. This operation requires
+   * the specified scope permission.
+   *
+   * Example usage:
+   * ```ts
+   * let client = new AccessControlClient(endpoint, credentials);
+   * let roleAssignment = await client.createRoleAssignment(roleId, principalId);
+   * ```
+   * @summary Create role assignment using role Id and user/service principal Id.
+   * @param {string} roleId The id of the role definition.
+   * @param {string} principalId The id of the user/service principal Id.
+   * @param {CreateRoleAssignmentOptions} [options] The optional parameters.
+   */  
+
+  public async createRoleAssignment(
+    roleId: string,
+    principalId: string,
+    options: CreateRoleAssignmentOptions = {}
+  ): Promise<CreateRoleAssignmentResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-CreateRoleAssignment", options);
+
+    try {
+      const response = await this.client.createRoleAssignment(
+        {
+          roleId: roleId,
+          principalId: principalId
+        },
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+    /**
+   * The listRoleAssignments method is applicable to any role assignments by Synapse. This operation requires
+   * the specified scope permission.
+   *
+   * Example usage:
+   * ```ts
+   * let client = new AccessControlClient(endpoint, credentials);
+   * let roleAssignments = await client.listRoleAssignments(roleId, principalId);
+   * ```
+   * @summary List role assignments using role Id or user/service principal Id.
+   * @param {string} roleId The id of the role definition.
+   * @param {string} principalId The id of the user/service principal.
+   * @param {ListRoleAssignmentsOptions} [options] The optional parameters.
+   */
+  public async listRoleAssignments(
+    roleId?: string,
+    principalId?: string,
+    options: ListRoleAssignmentsOptions = {}
+  ): Promise<ListRoleAssignmentsResponse> {
+    options.roleId = roleId;
+    options.principalId = principalId;
+    const { span, updatedOptions } = createSpan("Synapse-ListRoleAssignments", options);
+
+    try {
+      const response = await this.client.getRoleAssignments(
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+    /**
+   * The getRoleAssignmentById method is applicable to any role assignments by Synapse. This operation requires
+   * the specified scope permission.
+   *
+   * Example usage:
+   * ```ts
+   * let client = new AccessControlClient(endpoint, credentials);
+   * let roleAssignment = await client.getRoleAssignmentById(roleAssignmentId);
+   * ```
+   * @summary Get role assignment using Id.
+   * @param {string} roleAssignmentId The id of the role assignment.
+   * @param {GetRoleAssignmentOptions} [options] The optional parameters.
+   */
+  public async getRoleAssignmentById(
+    roleAssignmentId: string,
+    options: GetRoleAssignmentOptions = {}
+  ): Promise<GetRoleAssignmentByIdResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-GetRoleAssignmentById", options);
+
+    try {
+      const response = await this.client.getRoleAssignmentById(
+        roleAssignmentId,
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+   /**
+   * The deleteRoleAssignmentById method is applicable to any role assignments by Synapse. This operation requires
+   * the specified scope permission.
+   *
+   * Example usage:
+   * ```ts
+   * let client = new AccessControlClient(endpoint, credentials);
+   * let roleAssignment = await client.deleteRoleAssignmentById(roleAssignmentId);
+   * ```
+   * @summary Dellete role assignment using Id.
+   * @param {string} roleAssignmentId The id of the role assignment.
+   * @param {DeleteRoleAssignmentOptions} [options] The optional parameters.
+   */
+  public async deleteRoleAssignmentById(
+    roleAssignmentId: string,
+    options: DeleteRoleAssignmentOptions = {}
+  ): Promise<OperationResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-DeleteRoleAssignmentById", options);
+
+    try {
+      const response = await this.client.deleteRoleAssignmentById(
+        roleAssignmentId,
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+   /**
+   * The getCallerRoleAssignments method is applicable to any role assignments by Synapse. This operation requires
+   * the specified scope permission.
+   *
+   * Example usage:
+   * ```ts
+   * let client = new AccessControlClient(endpoint, credentials);
+   * let roleAssignments = await client.getCallerRoleAssignments();
+   * ```
+   * @summary Get role assignment of current user.
+   * @param {GetCallerRoleAssignmentsOptions} [options] The optional parameters.
+   */
+  public async getCallerRoleAssignments(
+    options: GetCallerRoleAssignmentsOptions = {}
+  ): Promise<GetCallerRoleAssignmentsResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-GetCallerRoleAssignments", options);
+
+    try {
+      const response = await this.client.getCallerRoleAssignments(
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
     } catch (e) {
       span.setStatus({
         code: CanonicalCode.UNKNOWN,
