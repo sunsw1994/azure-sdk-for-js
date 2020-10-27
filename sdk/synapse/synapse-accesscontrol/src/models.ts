@@ -16,12 +16,12 @@ import {
 
 export {
   GetCallerRoleAssignmentsResponse,
-  GetRoleDefinitionByIdResponse, 
-  ListRoleDefinitionsResponse, 
+  GetRoleDefinitionByIdResponse,
+  ListRoleDefinitionsResponse,
   CreateRoleAssignmentResponse,
   ListRoleAssignmentsResponse,
   GetRoleAssignmentByIdResponse,
-  ListRoleAssignmentsOptions,
+  ListRoleAssignmentsOptions
 };
 
 /**
@@ -79,7 +79,6 @@ export interface OperationResponse {
    */
   _response: HttpResponse;
 }
-
 
 export interface RoleAssignmentsListResponse {
   /**

@@ -31,8 +31,8 @@ import {
   GetCallerRoleAssignmentsOptions
 } from "./models";
 
-import { 
-  GetRoleDefinitionByIdResponse, 
+import {
+  GetRoleDefinitionByIdResponse,
   CreateRoleAssignmentResponse,
   ListRoleAssignmentsResponse,
   GetRoleAssignmentByIdResponse,
@@ -237,7 +237,7 @@ export class AccessControlClient {
    * @param {string} roleId The id of the role definition.
    * @param {string} principalId The id of the user/service principal Id.
    * @param {CreateRoleAssignmentOptions} [options] The optional parameters.
-   */  
+   */
 
   public async createRoleAssignment(
     roleId: string,
@@ -266,7 +266,7 @@ export class AccessControlClient {
     }
   }
 
-    /**
+  /**
    * The listRoleAssignments method is applicable to any role assignments by Synapse. This operation requires
    * the specified scope permission.
    *
@@ -305,7 +305,7 @@ export class AccessControlClient {
     }
   }
 
-    /**
+  /**
    * The getRoleAssignmentById method is applicable to any role assignments by Synapse. This operation requires
    * the specified scope permission.
    *
@@ -341,7 +341,7 @@ export class AccessControlClient {
     }
   }
 
-   /**
+  /**
    * The deleteRoleAssignmentById method is applicable to any role assignments by Synapse. This operation requires
    * the specified scope permission.
    *
@@ -377,7 +377,7 @@ export class AccessControlClient {
     }
   }
 
-   /**
+  /**
    * The getCallerRoleAssignments method is applicable to any role assignments by Synapse. This operation requires
    * the specified scope permission.
    *

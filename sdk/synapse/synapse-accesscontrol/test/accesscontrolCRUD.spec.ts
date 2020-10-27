@@ -55,7 +55,7 @@ describe("AccessControl Client - get role definition", () => {
     assert.isNotNull(
       createResult.id,
       "Failed to create expected role assignment by createRoleAssignment."
-    );    
+    );
     roleAssignmentId = createResult.id as string;
   });
 
@@ -73,8 +73,8 @@ describe("AccessControl Client - get role definition", () => {
     let roleId = "7af0c69a-a548-47d6-aea3-d00e69bd83aa";
     let listResult = await client.listRoleAssignments(roleId);
     const list: string[] = [];
-    for( const roleAssignment of listResult) {
-      list.push(roleAssignment.id!)
+    for (const roleAssignment of listResult) {
+      list.push(roleAssignment.id!);
     }
     assert.include(
       list,
@@ -84,14 +84,14 @@ describe("AccessControl Client - get role definition", () => {
   });
 
   it("successfully delete role assignments", async function() {
-      await client.deleteRoleAssignmentById(roleAssignmentId);
+    await client.deleteRoleAssignmentById(roleAssignmentId);
   });
 
   it("successfully list caller's role assignment", async function() {
     let listResult = await client.getCallerRoleAssignments();
     const list: string[] = [];
-    for( const roleAssignment of listResult._response.parsedBody) {
-      list.push(roleAssignment)
+    for (const roleAssignment of listResult._response.parsedBody) {
+      list.push(roleAssignment);
     }
     assert.include(
       list,
