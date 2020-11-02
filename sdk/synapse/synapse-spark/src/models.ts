@@ -3,21 +3,24 @@
 
 import { PipelineOptions } from "@azure/core-http";
 import { OperationOptions } from "@azure/core-http";
-
-// import { HttpResponse } from "@azure/core-http";
+import { HttpResponse } from "@azure/core-http";
 
 import {
   SparkBatchGetSparkBatchJobResponse as GetSparkBatchJobResponse,
-  // SynapseAccessControlGetRoleDefinitionsResponse as ListRoleDefinitionsResponse,
-  // SynapseAccessControlCreateRoleAssignmentResponse as CreateRoleAssignmentResponse,
-  // SynapseAccessControlGetRoleAssignmentsResponse as ListRoleAssignmentsResponse,
-  // SynapseAccessControlGetRoleAssignmentsOptionalParams as ListRoleAssignmentsOptions,
-  // SynapseAccessControlGetRoleAssignmentByIdResponse as GetRoleAssignmentByIdResponse,
-  // SynapseAccessControlGetCallerRoleAssignmentsResponse as GetCallerRoleAssignmentsResponse
+  SparkBatchGetSparkBatchJobsResponse as ListSparkBatchJobResponse,
+  SparkBatchCreateSparkBatchJobResponse as CreateSparkBatchJobResponse,
+  SparkSessionGetSparkSessionResponse as GetSparkSessionResponse,
+  SparkSessionGetSparkSessionsResponse as ListSparkSessionResponse,
+  SparkSessionCreateSparkSessionResponse as CreateSparkSessionResponse
 } from "./generated/models";
 
 export {
   GetSparkBatchJobResponse,
+  ListSparkBatchJobResponse,
+  CreateSparkBatchJobResponse,
+  GetSparkSessionResponse,
+  ListSparkSessionResponse,
+  CreateSparkSessionResponse
   // GetCallerRoleAssignmentsResponse,
   // GetRoleDefinitionByIdResponse,
   // ListRoleDefinitionsResponse,
@@ -38,24 +41,39 @@ export interface SparkClientOptions extends PipelineOptions {}
 export type GetSparkBatchJobOptions = OperationOptions;
 
 // /**
-//  * Options to get a role definition.
-//  */
-// export type GetRoleAssignmentOptions = OperationOptions;
-
-// /**
 //  * Options to list role definitions.
 //  */
-// export type ListRoleDefinitionOptions = OperationOptions;
+export type ListSparkBatchJobOptions = OperationOptions;
 
 // /**
 //  * Options to create role assignment.
 //  */
-// export type CreateRoleAssignmentOptions = OperationOptions;
+export type CreateSparkBatchJobOptions = OperationOptions;
 
 // /**
 //  * Options to delete role assignment.
 //  */
-// export type DeleteRoleAssignmentOptions = OperationOptions;
+export type CancelSparkBatchJobOptions = OperationOptions;
+
+/**
+ * Options to get a role definition.
+ */
+export type GetSparkSessionOptions = OperationOptions;
+
+// /**
+//  * Options to list role definitions.
+//  */
+export type ListSparkSessionOptions = OperationOptions;
+
+// /**
+//  * Options to create role assignment.
+//  */
+export type CreateSparkSessionOptions = OperationOptions;
+
+// /**
+//  * Options to delete role assignment.
+//  */
+export type CancelSparkSessionOptions = OperationOptions;
 
 // /**
 //  * Options to delete role assignment.
@@ -65,23 +83,23 @@ export type GetSparkBatchJobOptions = OperationOptions;
 // /**
 //  * Arguments for retrieving the next page of search results.
 //  */
-// export interface ListPageSettings {
-//   /**
-//    * A token used for retrieving the next page of results when the server
-//    * enforces pagination.
-//    */
-//   continuationToken?: string;
-// }
+export interface ListPageSettings {
+  /**
+   * A token used for retrieving the next page of results when the server
+   * enforces pagination.
+   */
+  continuationToken?: string;
+}
 
 // /**
 //  * Represents the repsonse for operations
 //  */
-// export interface OperationResponse {
-//   /**
-//    * The underlying HTTP response containing both raw and deserialized response data.
-//    */
-//   _response: HttpResponse;
-// }
+export interface OperationResponse {
+  /**
+   * The underlying HTTP response containing both raw and deserialized response data.
+   */
+  _response: HttpResponse;
+}
 
 // export interface RoleAssignmentsListResponse {
 //   /**
