@@ -47,7 +47,11 @@ import {
   CreateSparkStatementResponse
 } from "./models";
 
-import { SparkBatchJobOptions, SparkSessionOptions, SparkStatementOptions } from "./generated/models";
+import {
+  SparkBatchJobOptions,
+  SparkSessionOptions,
+  SparkStatementOptions
+} from "./generated/models";
 
 export { PipelineOptions, logger };
 
@@ -422,5 +426,4 @@ export class SparkClient {
       span.end();
     }
   }
-
 }

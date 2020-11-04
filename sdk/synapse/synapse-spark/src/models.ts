@@ -38,7 +38,7 @@ export {
   PluginCurrentState,
   SparkErrorSource,
   SparkSessionResultType,
-  SparkStatementLanguageType,
+  SparkStatementLanguageType
 } from "./generated/models";
 
 /**
@@ -61,20 +61,16 @@ export interface SparkClientOptions extends PipelineOptions {
 export {
   SparkBatchGetSparkBatchJobOptionalParams as GetSparkBatchJobOptions,
   SparkBatchGetSparkBatchJobsOptionalParams as ListSparkBatchJobOptions,
-  SparkBatchCreateSparkBatchJobOptionalParams as CreateSparkBatchJobOptions,  
+  SparkBatchCreateSparkBatchJobOptionalParams as CreateSparkBatchJobOptions,
   SparkSessionGetSparkSessionOptionalParams as GetSparkSessionOptions,
   SparkSessionGetSparkSessionsOptionalParams as ListSparkSessionOptions,
-  SparkSessionCreateSparkSessionOptionalParams as CreateSparkSessionOptions,  
+  SparkSessionCreateSparkSessionOptionalParams as CreateSparkSessionOptions
 } from "./generated/models";
-
-
 
 // /**
 //  * Options to delete role assignment.
 //  */
 export type CancelSparkBatchJobOptions = OperationOptions;
-
-
 
 // /**
 //  * Options to delete role assignment.
@@ -82,7 +78,6 @@ export type CancelSparkBatchJobOptions = OperationOptions;
 export type CancelSparkSessionOptions = OperationOptions;
 
 export type ResetSparkSessionTimeoutOptions = OperationOptions;
-
 
 /**
  * Options to get a role definition.
@@ -103,7 +98,6 @@ export type CreateSparkStatementOptions = OperationOptions;
 //  * Options to delete role assignment.
 //  */
 export type CancelSparkStatementOptions = OperationOptions;
-
 
 // /**
 //  * Arguments for retrieving the next page of search results.
