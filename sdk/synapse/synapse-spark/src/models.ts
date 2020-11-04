@@ -5,80 +5,105 @@ import { PipelineOptions } from "@azure/core-http";
 import { OperationOptions } from "@azure/core-http";
 import { HttpResponse } from "@azure/core-http";
 
-import {
+export {
   SparkBatchGetSparkBatchJobResponse as GetSparkBatchJobResponse,
   SparkBatchGetSparkBatchJobsResponse as ListSparkBatchJobResponse,
   SparkBatchCreateSparkBatchJobResponse as CreateSparkBatchJobResponse,
   SparkSessionGetSparkSessionResponse as GetSparkSessionResponse,
   SparkSessionGetSparkSessionsResponse as ListSparkSessionResponse,
-  SparkSessionCreateSparkSessionResponse as CreateSparkSessionResponse
+  SparkSessionCreateSparkSessionResponse as CreateSparkSessionResponse,
+  SparkSessionGetSparkStatementResponse as GetSparkStatementResponse,
+  SparkSessionGetSparkStatementsResponse as ListSparkStatementResponse,
+  SparkSessionCreateSparkStatementResponse as CreateSparkStatementResponse,
+  SparkBatchJobCollection,
+  SparkBatchJob,
+  SparkBatchJobState,
+  SparkRequest,
+  SparkScheduler,
+  SparkServicePlugin,
+  SparkServiceError,
+  SparkBatchJobOptions,
+  SparkSessionCollection,
+  SparkSession,
+  SparkSessionState,
+  SparkSessionOptions,
+  SparkStatementCollection,
+  SparkStatement,
+  SparkStatementOutput,
+  SparkStatementOptions,
+  SparkStatementCancellationResult,
+  SparkJobType,
+  SparkBatchJobResultType,
+  SchedulerCurrentState,
+  PluginCurrentState,
+  SparkErrorSource,
+  SparkSessionResultType,
+  SparkStatementLanguageType,
 } from "./generated/models";
-
-export {
-  GetSparkBatchJobResponse,
-  ListSparkBatchJobResponse,
-  CreateSparkBatchJobResponse,
-  GetSparkSessionResponse,
-  ListSparkSessionResponse,
-  CreateSparkSessionResponse
-  // GetCallerRoleAssignmentsResponse,
-  // GetRoleDefinitionByIdResponse,
-  // ListRoleDefinitionsResponse,
-  // CreateRoleAssignmentResponse,
-  // ListRoleAssignmentsResponse,
-  // GetRoleAssignmentByIdResponse,
-  // ListRoleAssignmentsOptions
-};
 
 /**
  * Options to create spark client.
  */
-export interface SparkClientOptions extends PipelineOptions {}
+export interface SparkClientOptions extends PipelineOptions {
+  /**
+   * Valid api-version for the request.
+   */
+  livyApiVersion?: string;
+  /**
+   * Overrides client endpoint.
+   */
+  endpoint?: string;
+}
 
 /**
  * Options to get a role definition.
  */
-export type GetSparkBatchJobOptions = OperationOptions;
+export {
+  SparkBatchGetSparkBatchJobOptionalParams as GetSparkBatchJobOptions,
+  SparkBatchGetSparkBatchJobsOptionalParams as ListSparkBatchJobOptions,
+  SparkBatchCreateSparkBatchJobOptionalParams as CreateSparkBatchJobOptions,  
+  SparkSessionGetSparkSessionOptionalParams as GetSparkSessionOptions,
+  SparkSessionGetSparkSessionsOptionalParams as ListSparkSessionOptions,
+  SparkSessionCreateSparkSessionOptionalParams as CreateSparkSessionOptions,  
+} from "./generated/models";
 
-// /**
-//  * Options to list role definitions.
-//  */
-export type ListSparkBatchJobOptions = OperationOptions;
 
-// /**
-//  * Options to create role assignment.
-//  */
-export type CreateSparkBatchJobOptions = OperationOptions;
 
 // /**
 //  * Options to delete role assignment.
 //  */
 export type CancelSparkBatchJobOptions = OperationOptions;
 
-/**
- * Options to get a role definition.
- */
-export type GetSparkSessionOptions = OperationOptions;
 
-// /**
-//  * Options to list role definitions.
-//  */
-export type ListSparkSessionOptions = OperationOptions;
-
-// /**
-//  * Options to create role assignment.
-//  */
-export type CreateSparkSessionOptions = OperationOptions;
 
 // /**
 //  * Options to delete role assignment.
 //  */
 export type CancelSparkSessionOptions = OperationOptions;
 
+export type ResetSparkSessionTimeoutOptions = OperationOptions;
+
+
+/**
+ * Options to get a role definition.
+ */
+export type GetSparkStatementOptions = OperationOptions;
+
+// /**
+//  * Options to list role definitions.
+//  */
+export type ListSparkStatementOptions = OperationOptions;
+
+// /**
+//  * Options to create role assignment.
+//  */
+export type CreateSparkStatementOptions = OperationOptions;
+
 // /**
 //  * Options to delete role assignment.
 //  */
-// export type GetCallerRoleAssignmentsOptions = OperationOptions;
+export type CancelSparkStatementOptions = OperationOptions;
+
 
 // /**
 //  * Arguments for retrieving the next page of search results.

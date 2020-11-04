@@ -16,7 +16,6 @@ import { logger } from "./logger";
 import { SDK_VERSION } from "./constants";
 import { createSpan } from "./tracing";
 import { CanonicalCode } from "@opentelemetry/api";
-// import { PagedAsyncIterableIterator } from "@azure/core-paging";
 
 import {
   SparkClientOptions,
@@ -28,7 +27,12 @@ import {
   ListSparkSessionOptions,
   CreateSparkSessionOptions,
   CancelSparkSessionOptions,
-  OperationResponse,
+  ResetSparkSessionTimeoutOptions,
+  GetSparkStatementOptions,
+  ListSparkStatementOptions,
+  CreateSparkStatementOptions,
+  CancelSparkStatementOptions,
+  OperationResponse
 } from "./models";
 
 import {
@@ -37,17 +41,17 @@ import {
   CreateSparkBatchJobResponse,
   GetSparkSessionResponse,
   ListSparkSessionResponse,
-  CreateSparkSessionResponse
+  CreateSparkSessionResponse,
+  GetSparkStatementResponse,
+  ListSparkStatementResponse,
+  CreateSparkStatementResponse
 } from "./models";
 
-import {
-  SparkBatchJobOptions,
-  SparkSessionOptions
-} from "./generated/models"
+import { SparkBatchJobOptions, SparkSessionOptions, SparkStatementOptions } from "./generated/models";
 
 export { PipelineOptions, logger };
 
-export class SynapseSparkClient {
+export class SparkClient {
   /**
    * The base URL to the workspace
    */
@@ -208,7 +212,6 @@ export class SynapseSparkClient {
     }
   }
 
-
   public async getSparkSession(
     sessionId: number,
     options: GetSparkSessionOptions = {}
@@ -277,14 +280,14 @@ export class SynapseSparkClient {
   }
 
   public async cancelSparkSession(
-    batchId: number,
+    sessionId: number,
     options: CancelSparkSessionOptions = {}
   ): Promise<OperationResponse> {
     const { span, updatedOptions } = createSpan("Synapse-CancelSparkSession", options);
 
     try {
-      const response = await this.client.sparkSession.cancelSparkSession(
-        batchId,
+      const response = await this.client.sparkSession.resetSparkSessionTimeout(
+        sessionId,
         operationOptionsToRequestOptionsBase(updatedOptions)
       );
       return response;
@@ -297,5 +300,127 @@ export class SynapseSparkClient {
     } finally {
       span.end();
     }
-  }  
+  }
+
+  public async resetSparkSessionTimeout(
+    sessionId: number,
+    options: ResetSparkSessionTimeoutOptions
+  ): Promise<OperationResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-ResetSparkSessionTimeout", options);
+
+    try {
+      const response = await this.client.sparkSession.resetSparkSessionTimeout(
+        sessionId,
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+  public async getSparkStatement(
+    sessionId: number,
+    statementId: number,
+    options: GetSparkStatementOptions = {}
+  ): Promise<GetSparkStatementResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-GetSparkStatement", options);
+
+    try {
+      const response = await this.client.sparkSession.getSparkStatement(
+        sessionId,
+        statementId,
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+  public async listSparkStatement(
+    sessionId: number,
+    options: ListSparkStatementOptions = {}
+  ): Promise<ListSparkStatementResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-ListSparkStatement", options);
+
+    try {
+      const response = await this.client.sparkSession.getSparkStatements(
+        sessionId,
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+  public async createSparkStatement(
+    sessionId: number,
+    sparkStatementOptions: SparkStatementOptions,
+    options: CreateSparkStatementOptions = {}
+  ): Promise<CreateSparkStatementResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-CreateSparkStatement", options);
+
+    try {
+      const response = await this.client.sparkSession.createSparkStatement(
+        sessionId,
+        sparkStatementOptions,
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
+  public async cancelSparkStatement(
+    sessionId: number,
+    statementId: number,
+    options: CancelSparkStatementOptions = {}
+  ): Promise<OperationResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-CancelSparkStatement", options);
+
+    try {
+      const response = await this.client.sparkSession.cancelSparkStatement(
+        sessionId,
+        statementId,
+        operationOptionsToRequestOptionsBase(updatedOptions)
+      );
+      return response;
+    } catch (e) {
+      span.setStatus({
+        code: CanonicalCode.UNKNOWN,
+        message: e.message
+      });
+      throw e;
+    } finally {
+      span.end();
+    }
+  }
+
 }
