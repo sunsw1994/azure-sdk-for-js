@@ -84,10 +84,7 @@ export class SparkClient {
           : libInfo
     };
 
-    const authPolicy = bearerTokenAuthenticationPolicy(
-      credential,
-      DEFAULT_SYNAPSE_SCOPE
-    );
+    const authPolicy = bearerTokenAuthenticationPolicy(credential, DEFAULT_SYNAPSE_SCOPE);
 
     const internalPipelineOptions = {
       ...pipelineOptions,
@@ -107,7 +104,8 @@ export class SparkClient {
    * Gets a single spark batch job.
    * @param batchId Identifier for the batch job.
    * @param options The options parameters.
-   */  
+   */
+
   public async getSparkBatchJob(
     batchId: number,
     options: GetSparkBatchJobOptions = {}
@@ -134,7 +132,8 @@ export class SparkClient {
   /**
    * List all spark batch jobs which are running under a particular spark pool.
    * @param options The options parameters.
-   */  
+   */
+
   public async listSparkBatchJobs(
     options: ListSparkBatchJobsOptions = {}
   ): Promise<ListSparkBatchJobsResponse> {
@@ -160,7 +159,8 @@ export class SparkClient {
    * Create new spark batch job.
    * @param sparkBatchJobOptions Livy compatible batch job request payload.
    * @param options The options parameters.
-   */  
+   */
+
   public async createSparkBatchJob(
     sparkBatchJobOptions: SparkBatchJobOptions,
     options: CreateSparkBatchJobOptions = {}
@@ -188,7 +188,8 @@ export class SparkClient {
    * Cancels a running spark batch job.
    * @param batchId Identifier for the batch job.
    * @param options The options parameters.
-   */  
+   */
+
   public async cancelSparkBatchJob(
     batchId: number,
     options: CancelSparkBatchJobOptions = {}
@@ -216,7 +217,8 @@ export class SparkClient {
    * Gets a single spark session.
    * @param sessionId Identifier for the session.
    * @param options The options parameters.
-   */  
+   */
+
   public async getSparkSession(
     sessionId: number,
     options: GetSparkSessionOptions = {}
@@ -243,7 +245,8 @@ export class SparkClient {
   /**
    * List all spark sessions which are running under a particular spark pool.
    * @param options The options parameters.
-   */  
+   */
+
   public async listSparkSessions(
     options: ListSparkSessionsOptions = {}
   ): Promise<ListSparkSessionsResponse> {
@@ -269,7 +272,8 @@ export class SparkClient {
    * Create new spark session.
    * @param sparkSessionOptions Livy compatible batch job request payload.
    * @param options The options parameters.
-   */  
+   */
+
   public async createSparkSeesion(
     sparkSessionOptions: SparkSessionOptions,
     options: CreateSparkSessionOptions = {}
@@ -297,7 +301,8 @@ export class SparkClient {
    * Cancels a running spark session.
    * @param sessionId Identifier for the session.
    * @param options The options parameters.
-   */  
+   */
+
   public async cancelSparkSession(
     sessionId: number,
     options: CancelSparkSessionOptions = {}
@@ -325,7 +330,8 @@ export class SparkClient {
    * Sends a keep alive call to the current session to reset the session timeout.
    * @param sessionId Identifier for the session.
    * @param options The options parameters.
-   */  
+   */
+
   public async resetSparkSessionTimeout(
     sessionId: number,
     options: ResetSparkSessionTimeoutOptions
@@ -384,7 +390,8 @@ export class SparkClient {
    * Gets a list of statements within a spark session.
    * @param sessionId Identifier for the session.
    * @param options The options parameters.
-   */  
+   */
+
   public async listSparkStatements(
     sessionId: number,
     options: ListSparkStatementsOptions = {}
@@ -413,7 +420,8 @@ export class SparkClient {
    * @param sessionId Identifier for the session.
    * @param sparkStatementOptions Livy compatible batch job request payload.
    * @param options The options parameters.
-   */  
+   */
+
   public async createSparkStatement(
     sessionId: number,
     sparkStatementOptions: SparkStatementOptions,
@@ -444,7 +452,8 @@ export class SparkClient {
    * @param sessionId Identifier for the session.
    * @param statementId Identifier for the statement.
    * @param options The options parameters.
-   */  
+   */
+
   public async cancelSparkStatement(
     sessionId: number,
     statementId: number,
