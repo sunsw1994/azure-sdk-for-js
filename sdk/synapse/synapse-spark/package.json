@@ -1,8 +1,8 @@
 {
   "name": "@azure/synapse-spark",
   "author": "Microsoft Corporation",
-  "description": "A generated SDK for SynapseSpark.",
-  "version": "1.0.0",
+  "description": "Azure client library for Azure Synapse Spark.",
+  "version": "1.0.0-beta.1",
   "dependencies": {
     "@azure/abort-controller": "^1.0.0",
     "@azure/core-http": "^1.1.6",
@@ -115,7 +115,7 @@
     "test:node": "npm run clean && npm run build:test && npm run unit-test:node",
     "test": "npm run clean && npm run build:test && npm run unit-test",
     "unit-test:browser": "karma start --single-run",
-    "unit-test:node": "mocha --reporter ../../../common/tools/mocha-multi-reporter.js dist-test/index.node.js",
+    "unit-test:node": "mocha --reporter ../../../common/tools/mocha-multi-reporter.js dist-test/index.node.js --timeout 500000",
     "unit-test": "npm run unit-test:node && npm run unit-test:browser",
     "pack": "npm pack 2>&1",
     "prebuild": "npm run clean"

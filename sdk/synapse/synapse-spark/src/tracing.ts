@@ -2,8 +2,8 @@
 // Licensed under the MIT license.
 
 import { getTracer } from "@azure/core-tracing";
-import { Span, SpanOptions, SpanKind } from "@opentelemetry/api";
-import { OperationOptions } from "@azure/core-http";
+import { CanonicalCode, Span, SpanOptions, SpanKind } from "@opentelemetry/api";
+import { OperationOptions, RestError } from "@azure/core-http";
 
 type OperationTracingOptions = OperationOptions["tracingOptions"];
 
@@ -54,4 +54,19 @@ export function createSpan<T extends OperationOptions>(
     span,
     updatedOptions: newOperationOptions
   };
+}
+
+export function getCanonicalCode(err: Error) {
+  if (err instanceof RestError) {
+    switch (err.statusCode) {
+      case 401:
+        return CanonicalCode.PERMISSION_DENIED;
+      case 404:
+        return CanonicalCode.NOT_FOUND;
+      case 412:
+        return CanonicalCode.FAILED_PRECONDITION;
+    }
+  }
+
+  return CanonicalCode.UNKNOWN;
 }

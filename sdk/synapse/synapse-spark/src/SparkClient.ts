@@ -13,45 +13,41 @@ import {
 
 import { SynapseSpark } from "./generated";
 import { logger } from "./logger";
-import { SDK_VERSION } from "./constants";
-import { createSpan } from "./tracing";
-import { CanonicalCode } from "@opentelemetry/api";
+import { SDK_VERSION, DEFAULT_SYNAPSE_SCOPE } from "./constants";
+import { createSpan, getCanonicalCode } from "./tracing";
 
 import {
   SparkClientOptions,
   GetSparkBatchJobOptions,
-  ListSparkBatchJobOptions,
+  ListSparkBatchJobsOptions,
   CreateSparkBatchJobOptions,
   CancelSparkBatchJobOptions,
   GetSparkSessionOptions,
-  ListSparkSessionOptions,
+  ListSparkSessionsOptions,
   CreateSparkSessionOptions,
   CancelSparkSessionOptions,
   ResetSparkSessionTimeoutOptions,
   GetSparkStatementOptions,
-  ListSparkStatementOptions,
+  ListSparkStatementsOptions,
   CreateSparkStatementOptions,
   CancelSparkStatementOptions,
+  SparkBatchJobOptions,
+  SparkSessionOptions,
+  SparkStatementOptions,
   OperationResponse
 } from "./models";
 
 import {
   GetSparkBatchJobResponse,
-  ListSparkBatchJobResponse,
+  ListSparkBatchJobsResponse,
   CreateSparkBatchJobResponse,
   GetSparkSessionResponse,
-  ListSparkSessionResponse,
+  ListSparkSessionsResponse,
   CreateSparkSessionResponse,
   GetSparkStatementResponse,
-  ListSparkStatementResponse,
+  ListSparkStatementsResponse,
   CreateSparkStatementResponse
 } from "./models";
-
-import {
-  SparkBatchJobOptions,
-  SparkSessionOptions,
-  SparkStatementOptions
-} from "./generated/models";
 
 export { PipelineOptions, logger };
 
@@ -64,29 +60,10 @@ export class SparkClient {
   /**
    * @internal
    * @ignore
-   * A reference to the auto-generated synapse accesscontrol HTTP client.
+   * A reference to the auto-generated synapse spark HTTP client.
    */
   private readonly client: SynapseSpark;
 
-  /**
-   * Creates an instance of AccessControlClient.
-   *
-   * Example usage:
-   * ```ts
-   * import { AccessControlClient } from "@azure/synapse-spark";
-   * import { DefaultAzureCredential } from "@azure/identity";
-   *
-   * let workspaceEndpoint = `https://<workspacename>.dev.azuresynapse.net`;
-   * let credentials = new DefaultAzureCredential();
-   *
-   * let client = new AccessControlClient(vaultUrl, credentials);
-   * ```
-   * @param {string} workspaceEndpoint the base URL to the workspace.
-   * @param {TokenCredential} credential An object that implements the `TokenCredential` interface used to authenticate requests to the service. Use the @azure/identity package to create a credential that suits your needs.
-   * @param {PipelineOptions} [pipelineOptions] Optional. Pipeline options used to configure workspace API requests.
-   *                                                         Omit this parameter to use the default pipeline configuration.
-   * @memberof AccessControlClient
-   */
   constructor(
     workspaceEndpoint: string,
     sparkPoolName: string,
@@ -109,7 +86,7 @@ export class SparkClient {
 
     const authPolicy = bearerTokenAuthenticationPolicy(
       credential,
-      "https://dev.azuresynapse.net/.default"
+      DEFAULT_SYNAPSE_SCOPE
     );
 
     const internalPipelineOptions = {
@@ -126,6 +103,11 @@ export class SparkClient {
     this.client = new SynapseSpark(credential, workspaceEndpoint, sparkPoolName, pipeline);
   }
 
+  /**
+   * Gets a single spark batch job.
+   * @param batchId Identifier for the batch job.
+   * @param options The options parameters.
+   */  
   public async getSparkBatchJob(
     batchId: number,
     options: GetSparkBatchJobOptions = {}
@@ -140,7 +122,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -149,10 +131,14 @@ export class SparkClient {
     }
   }
 
-  public async listSparkBatchJob(
-    options: ListSparkBatchJobOptions = {}
-  ): Promise<ListSparkBatchJobResponse> {
-    const { span, updatedOptions } = createSpan("Synapse-ListSparkBatchJob", options);
+  /**
+   * List all spark batch jobs which are running under a particular spark pool.
+   * @param options The options parameters.
+   */  
+  public async listSparkBatchJobs(
+    options: ListSparkBatchJobsOptions = {}
+  ): Promise<ListSparkBatchJobsResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-ListSparkBatchJobs", options);
 
     try {
       const response = await this.client.sparkBatch.getSparkBatchJobs(
@@ -161,7 +147,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -170,6 +156,11 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Create new spark batch job.
+   * @param sparkBatchJobOptions Livy compatible batch job request payload.
+   * @param options The options parameters.
+   */  
   public async createSparkBatchJob(
     sparkBatchJobOptions: SparkBatchJobOptions,
     options: CreateSparkBatchJobOptions = {}
@@ -184,7 +175,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -193,6 +184,11 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Cancels a running spark batch job.
+   * @param batchId Identifier for the batch job.
+   * @param options The options parameters.
+   */  
   public async cancelSparkBatchJob(
     batchId: number,
     options: CancelSparkBatchJobOptions = {}
@@ -207,7 +203,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -216,6 +212,11 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Gets a single spark session.
+   * @param sessionId Identifier for the session.
+   * @param options The options parameters.
+   */  
   public async getSparkSession(
     sessionId: number,
     options: GetSparkSessionOptions = {}
@@ -230,7 +231,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -239,10 +240,14 @@ export class SparkClient {
     }
   }
 
-  public async listSparkSession(
-    options: ListSparkSessionOptions = {}
-  ): Promise<ListSparkSessionResponse> {
-    const { span, updatedOptions } = createSpan("Synapse-ListSparkSession", options);
+  /**
+   * List all spark sessions which are running under a particular spark pool.
+   * @param options The options parameters.
+   */  
+  public async listSparkSessions(
+    options: ListSparkSessionsOptions = {}
+  ): Promise<ListSparkSessionsResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-ListSparkSessions", options);
 
     try {
       const response = await this.client.sparkSession.getSparkSessions(
@@ -251,7 +256,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -260,6 +265,11 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Create new spark session.
+   * @param sparkSessionOptions Livy compatible batch job request payload.
+   * @param options The options parameters.
+   */  
   public async createSparkSeesion(
     sparkSessionOptions: SparkSessionOptions,
     options: CreateSparkSessionOptions = {}
@@ -274,7 +284,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -283,6 +293,11 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Cancels a running spark session.
+   * @param sessionId Identifier for the session.
+   * @param options The options parameters.
+   */  
   public async cancelSparkSession(
     sessionId: number,
     options: CancelSparkSessionOptions = {}
@@ -297,7 +312,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -306,6 +321,11 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Sends a keep alive call to the current session to reset the session timeout.
+   * @param sessionId Identifier for the session.
+   * @param options The options parameters.
+   */  
   public async resetSparkSessionTimeout(
     sessionId: number,
     options: ResetSparkSessionTimeoutOptions
@@ -320,7 +340,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -329,6 +349,12 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Gets a single statement within a spark session.
+   * @param sessionId Identifier for the session.
+   * @param statementId Identifier for the statement.
+   * @param options The options parameters.
+   */
   public async getSparkStatement(
     sessionId: number,
     statementId: number,
@@ -345,7 +371,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -354,11 +380,16 @@ export class SparkClient {
     }
   }
 
-  public async listSparkStatement(
+  /**
+   * Gets a list of statements within a spark session.
+   * @param sessionId Identifier for the session.
+   * @param options The options parameters.
+   */  
+  public async listSparkStatements(
     sessionId: number,
-    options: ListSparkStatementOptions = {}
-  ): Promise<ListSparkStatementResponse> {
-    const { span, updatedOptions } = createSpan("Synapse-ListSparkStatement", options);
+    options: ListSparkStatementsOptions = {}
+  ): Promise<ListSparkStatementsResponse> {
+    const { span, updatedOptions } = createSpan("Synapse-ListSparkStatements", options);
 
     try {
       const response = await this.client.sparkSession.getSparkStatements(
@@ -368,7 +399,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -377,6 +408,12 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Create statement within a spark session.
+   * @param sessionId Identifier for the session.
+   * @param sparkStatementOptions Livy compatible batch job request payload.
+   * @param options The options parameters.
+   */  
   public async createSparkStatement(
     sessionId: number,
     sparkStatementOptions: SparkStatementOptions,
@@ -393,7 +430,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;
@@ -402,6 +439,12 @@ export class SparkClient {
     }
   }
 
+  /**
+   * Kill a statement within a session.
+   * @param sessionId Identifier for the session.
+   * @param statementId Identifier for the statement.
+   * @param options The options parameters.
+   */  
   public async cancelSparkStatement(
     sessionId: number,
     statementId: number,
@@ -418,7 +461,7 @@ export class SparkClient {
       return response;
     } catch (e) {
       span.setStatus({
-        code: CanonicalCode.UNKNOWN,
+        code: getCanonicalCode(e),
         message: e.message
       });
       throw e;

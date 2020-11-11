@@ -11,15 +11,15 @@
     "cache-control": "no-store, no-cache",
     "content-length": "1322",
     "content-type": "application/json; charset=utf-8",
-    "date": "Wed, 04 Nov 2020 05:54:07 GMT",
+    "date": "Wed, 11 Nov 2020 11:49:20 GMT",
     "expires": "-1",
     "p3p": "CP=\"DSP CUR OTPi IND OTRi ONL FIN\"",
     "pragma": "no-cache",
     "referrer-policy": "strict-origin-when-cross-origin",
     "strict-transport-security": "max-age=31536000; includeSubDomains",
     "x-content-type-options": "nosniff",
-    "x-ms-ests-server": "2.1.11198.13 - EASLR1 ProdSlices",
-    "x-ms-request-id": "92c42dba-594b-4261-9a1f-03ba43241a00"
+    "x-ms-ests-server": "2.1.11198.13 - SEASLR2 ProdSlices",
+    "x-ms-request-id": "8a94a1e8-d2ea-4272-b5a1-6a749e553b00"
    }
   },
   {
@@ -30,28 +30,28 @@
    },
    "requestBody": "{\"name\":\"testSession\",\"driverMemory\":\"8g\",\"driverCores\":4,\"executorMemory\":\"8g\",\"executorCores\":4,\"numExecutors\":2}",
    "status": 200,
-   "response": "{\"livyInfo\":{\"notStartedAt\":null,\"startingAt\":null,\"idleAt\":null,\"deadAt\":null,\"shuttingDownAt\":null,\"killedAt\":null,\"recoveringAt\":null,\"busyAt\":null,\"errorAt\":null,\"currentState\":\"not_started\",\"jobCreationRequest\":{\"name\":\"testSession\",\"conf\":{},\"driverMemory\":\"8g\",\"driverCores\":4,\"executorMemory\":\"8g\",\"executorCores\":4,\"numExecutors\":2}},\"name\":\"testSession\",\"workspaceName\":\"workspace_name\",\"computeName\":\"sparkpool_name\",\"sparkPoolName\":\"sparkpool_name\",\"submitterId\":\"bf4f36df-eda0-4fc4-9602-69d6ff714d8c\",\"artifactId\":\"Livy\",\"jobType\":\"SparkSession\",\"result\":\"Uncertain\",\"schedulerInfo\":{\"submittedAt\":\"2020-11-04T05:54:09.4642755+00:00\",\"scheduledAt\":null,\"endedAt\":null,\"cancellationRequestedAt\":null,\"currentState\":\"Queued\"},\"pluginInfo\":{\"preparationStartedAt\":null,\"resourceAcquisitionStartedAt\":null,\"submissionStartedAt\":null,\"monitoringStartedAt\":null,\"cleanupStartedAt\":null,\"currentState\":\"Preparation\"},\"tags\":{},\"id\":38,\"appId\":null,\"appInfo\":null,\"state\":\"not_started\",\"log\":null}",
+   "response": "{\"livyInfo\":{\"notStartedAt\":null,\"startingAt\":null,\"idleAt\":null,\"deadAt\":null,\"shuttingDownAt\":null,\"killedAt\":null,\"recoveringAt\":null,\"busyAt\":null,\"errorAt\":null,\"currentState\":\"not_started\",\"jobCreationRequest\":{\"name\":\"testSession\",\"conf\":{},\"driverMemory\":\"8g\",\"driverCores\":4,\"executorMemory\":\"8g\",\"executorCores\":4,\"numExecutors\":2}},\"name\":\"testSession\",\"workspaceName\":\"workspace_name\",\"computeName\":\"sparkpool_name\",\"sparkPoolName\":\"sparkpool_name\",\"submitterId\":\"bf4f36df-eda0-4fc4-9602-69d6ff714d8c\",\"artifactId\":\"Livy\",\"jobType\":\"SparkSession\",\"result\":\"Uncertain\",\"schedulerInfo\":{\"submittedAt\":\"2020-11-11T11:49:22.1252243+00:00\",\"scheduledAt\":null,\"endedAt\":null,\"cancellationRequestedAt\":null,\"currentState\":\"Queued\"},\"pluginInfo\":{\"preparationStartedAt\":null,\"resourceAcquisitionStartedAt\":null,\"submissionStartedAt\":null,\"monitoringStartedAt\":null,\"cleanupStartedAt\":null,\"currentState\":\"Preparation\"},\"tags\":{},\"id\":40,\"appId\":null,\"appInfo\":null,\"state\":\"not_started\",\"log\":null}",
    "responseHeaders": {
     "content-type": "application/json; charset=utf-8",
-    "date": "Wed, 04 Nov 2020 05:54:09 GMT",
+    "date": "Wed, 11 Nov 2020 11:49:22 GMT",
     "server": "Kestrel Microsoft-HTTPAPI/2.0",
     "status": "200",
     "strict-transport-security": "max-age=31536000; includeSubDomains",
-    "x-ms-activity-id": "56e63803-b5e1-4135-b0a9-6e3fa3be9f7b",
-    "x-ms-client-request-id": "dff352ba-7b29-4e6b-bcca-9859a8f3c052",
+    "x-ms-activity-id": "d2d1413f-e7d0-4913-ad24-1777d3edf273",
+    "x-ms-client-request-id": "985245be-3097-4a65-80b7-b6999b573b66",
     "x-ms-job-clusterrequested-on": "1/1/0001 12:00:00 AM +00:00",
     "x-ms-job-ended-on": "",
-    "x-ms-job-internal-id": "38",
+    "x-ms-job-internal-id": "40",
     "x-ms-job-livysubmission-on": "1/1/0001 12:00:00 AM +00:00",
     "x-ms-job-queued-on": "1/1/0001 12:00:00 AM +00:00",
     "x-ms-job-result": "Uncertain",
     "x-ms-job-scheduled-on": "1/1/0001 12:00:00 AM +00:00",
     "x-ms-job-scheduler-state": "Queued",
     "x-ms-job-submitted-by-name": "bf4f36df-eda0-4fc4-9602-69d6ff714d8c",
-    "x-ms-job-submitted-on": "11/4/2020 5:54:09 AM +00:00",
+    "x-ms-job-submitted-on": "11/11/2020 11:49:22 AM +00:00",
     "x-ms-job-type": "SparkServiceSession",
-    "x-ms-request-id": "cb2ff5bf-3f7f-4b33-ae88-79af4c16a352",
-    "x-ms-response-time-ms": "350"
+    "x-ms-request-id": "8548be68-cd02-4973-b86a-abf1fd0b1960",
+    "x-ms-response-time-ms": "78"
    }
   }
  ],
@@ -59,5 +59,5 @@
   "uniqueName": {},
   "newDate": {}
  },
- "hash": "93ccca0eefb88aa2d46db7da2b03aed8"
+ "hash": "8fd706141aede35eb6500d6d89821d03"
 }

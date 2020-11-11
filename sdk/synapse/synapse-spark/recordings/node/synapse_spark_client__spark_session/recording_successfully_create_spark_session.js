@@ -1,6 +1,6 @@
 let nock = require('nock');
 
-module.exports.hash = "a95bcf887b221ee9654bb39edef9b135";
+module.exports.hash = "346582cc39a53b94f980fb7b9d762d16";
 
 module.exports.testInfo = {"uniqueName":{},"newDate":{}}
 
@@ -22,17 +22,17 @@ nock('https://login.microsoftonline.com:443', {"encodedQueryParams":true})
   'P3P',
   'CP="DSP CUR OTPi IND OTRi ONL FIN"',
   'x-ms-request-id',
-  '4f6053f4-a674-4aa1-8c32-acdae9751800',
+  '993ec2c2-d319-4d54-bcee-1c1493193c00',
   'x-ms-ests-server',
-  '2.1.11198.13 - SEASLR2 ProdSlices',
+  '2.1.11198.13 - EASLR1 ProdSlices',
   'Set-Cookie',
-  'fpc=AvSjm05bvIpFsM01HZDo2t1J0eYvAQAAANU3NNcOAAAA; expires=Fri, 04-Dec-2020 05:49:10 GMT; path=/; secure; HttpOnly; SameSite=None',
+  'fpc=AjA34UM5v9hBsH3J8gvxf9RJ0eYvAQAAALTGPdcOAAAA; expires=Fri, 11-Dec-2020 11:49:09 GMT; path=/; secure; HttpOnly; SameSite=None',
   'Set-Cookie',
   'x-ms-gateway-slice=estsfd; path=/; secure; samesite=none; httponly',
   'Set-Cookie',
   'stsservicecookie=estsfd; path=/; secure; samesite=none; httponly',
   'Date',
-  'Wed, 04 Nov 2020 05:49:10 GMT',
+  'Wed, 11 Nov 2020 11:49:09 GMT',
   'Content-Length',
   '1322'
 ]);
@@ -40,7 +40,7 @@ nock('https://login.microsoftonline.com:443', {"encodedQueryParams":true})
 nock('https://workspace_name.dev.azuresynapse.net:443', {"encodedQueryParams":true})
   .post('/livyApi/versions/2019-11-01-preview/sparkPools/sparkpool_name/sessions', {"name":"testSession","driverMemory":"8g","driverCores":4,"executorMemory":"8g","executorCores":4,"numExecutors":2})
   .query(true)
-  .reply(200, {"livyInfo":{"notStartedAt":null,"startingAt":null,"idleAt":null,"deadAt":null,"shuttingDownAt":null,"killedAt":null,"recoveringAt":null,"busyAt":null,"errorAt":null,"currentState":"not_started","jobCreationRequest":{"name":"testSession","conf":{},"driverMemory":"8g","driverCores":4,"executorMemory":"8g","executorCores":4,"numExecutors":2}},"name":"testSession","workspaceName":"workspace_name","computeName":"sparkpool_name","sparkPoolName":"sparkpool_name","submitterId":"bf4f36df-eda0-4fc4-9602-69d6ff714d8c","artifactId":"Livy","jobType":"SparkSession","result":"Uncertain","schedulerInfo":{"submittedAt":"2020-11-04T05:49:11.1712566+00:00","scheduledAt":null,"endedAt":null,"cancellationRequestedAt":null,"currentState":"Queued"},"pluginInfo":{"preparationStartedAt":null,"resourceAcquisitionStartedAt":null,"submissionStartedAt":null,"monitoringStartedAt":null,"cleanupStartedAt":null,"currentState":"Preparation"},"tags":{},"id":37,"appId":null,"appInfo":null,"state":"not_started","log":null}, [
+  .reply(200, {"livyInfo":{"notStartedAt":null,"startingAt":null,"idleAt":null,"deadAt":null,"shuttingDownAt":null,"killedAt":null,"recoveringAt":null,"busyAt":null,"errorAt":null,"currentState":"not_started","jobCreationRequest":{"name":"testSession","conf":{},"driverMemory":"8g","driverCores":4,"executorMemory":"8g","executorCores":4,"numExecutors":2}},"name":"testSession","workspaceName":"workspace_name","computeName":"sparkpool_name","sparkPoolName":"sparkpool_name","submitterId":"bf4f36df-eda0-4fc4-9602-69d6ff714d8c","artifactId":"Livy","jobType":"SparkSession","result":"Uncertain","schedulerInfo":{"submittedAt":"2020-11-11T11:49:10.2134752+00:00","scheduledAt":null,"endedAt":null,"cancellationRequestedAt":null,"currentState":"Queued"},"pluginInfo":{"preparationStartedAt":null,"resourceAcquisitionStartedAt":null,"submissionStartedAt":null,"monitoringStartedAt":null,"cleanupStartedAt":null,"currentState":"Preparation"},"tags":{},"id":39,"appId":null,"appInfo":null,"state":"not_started","log":null}, [
   'Transfer-Encoding',
   'chunked',
   'Content-Type',
@@ -52,7 +52,7 @@ nock('https://workspace_name.dev.azuresynapse.net:443', {"encodedQueryParams":tr
   'x-ms-job-submitted-by-name',
   'bf4f36df-eda0-4fc4-9602-69d6ff714d8c',
   'x-ms-job-submitted-on',
-  '11/4/2020 5:49:11 AM +00:00',
+  '11/11/2020 11:49:10 AM +00:00',
   'x-ms-job-scheduled-on',
   '1/1/0001 12:00:00 AM +00:00',
   'x-ms-job-ended-on',
@@ -60,7 +60,7 @@ nock('https://workspace_name.dev.azuresynapse.net:443', {"encodedQueryParams":tr
   'x-ms-job-scheduler-state',
   'Queued',
   'x-ms-job-internal-id',
-  '37',
+  '39',
   'x-ms-job-result',
   'Uncertain',
   'x-ms-job-type',
@@ -72,13 +72,13 @@ nock('https://workspace_name.dev.azuresynapse.net:443', {"encodedQueryParams":tr
   'x-ms-job-livysubmission-on',
   '1/1/0001 12:00:00 AM +00:00',
   'x-ms-response-time-ms',
-  '86',
+  '444',
   'x-ms-activity-id',
-  'd1a34a91-77f6-4e07-91cb-c9d048932831',
+  '5e6f4f82-037e-4f43-85db-5e99c952c131',
   'x-ms-client-request-id',
-  '82b070bb-f463-40bd-b3e1-d7f32beee38b',
+  '163bdf54-df52-4097-b5bc-0c594ae9578b',
   'x-ms-request-id',
-  'd6b641ba-6681-4764-beeb-ef8ad46d148b',
+  'a831571d-66b2-4bd7-8336-24f68cef374d',
   'Date',
-  'Wed, 04 Nov 2020 05:49:11 GMT'
+  'Wed, 11 Nov 2020 11:49:10 GMT'
 ]);

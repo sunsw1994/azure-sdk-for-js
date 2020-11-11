@@ -82,7 +82,7 @@ export type GetSparkSessionResponse = SparkSession & {
     };
 };
 
-// @public
+// @public (undocumented)
 export type GetSparkStatementOptions = OperationOptions;
 
 // @public
@@ -99,14 +99,14 @@ export interface ListPageSettings {
 }
 
 // @public
-export interface ListSparkBatchJobOptions extends coreHttp.OperationOptions {
+export interface ListSparkBatchJobsOptions extends coreHttp.OperationOptions {
     detailed?: boolean;
     fromParam?: number;
     size?: number;
 }
 
 // @public
-export type ListSparkBatchJobResponse = SparkBatchJobCollection & {
+export type ListSparkBatchJobsResponse = SparkBatchJobCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SparkBatchJobCollection;
@@ -114,14 +114,14 @@ export type ListSparkBatchJobResponse = SparkBatchJobCollection & {
 };
 
 // @public
-export interface ListSparkSessionOptions extends coreHttp.OperationOptions {
+export interface ListSparkSessionsOptions extends coreHttp.OperationOptions {
     detailed?: boolean;
     fromParam?: number;
     size?: number;
 }
 
 // @public
-export type ListSparkSessionResponse = SparkSessionCollection & {
+export type ListSparkSessionsResponse = SparkSessionCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SparkSessionCollection;
@@ -129,10 +129,10 @@ export type ListSparkSessionResponse = SparkSessionCollection & {
 };
 
 // @public (undocumented)
-export type ListSparkStatementOptions = OperationOptions;
+export type ListSparkStatementsOptions = OperationOptions;
 
 // @public
-export type ListSparkStatementResponse = SparkStatementCollection & {
+export type ListSparkStatementsResponse = SparkStatementCollection & {
     _response: coreHttp.HttpResponse & {
         bodyAsText: string;
         parsedBody: SparkStatementCollection;
@@ -250,31 +250,18 @@ export interface SparkBatchJobState {
 // @public (undocumented)
 export class SparkClient {
     constructor(workspaceEndpoint: string, sparkPoolName: string, credential: TokenCredential, pipelineOptions?: SparkClientOptions);
-    // (undocumented)
     cancelSparkBatchJob(batchId: number, options?: CancelSparkBatchJobOptions): Promise<OperationResponse>;
-    // (undocumented)
     cancelSparkSession(sessionId: number, options?: CancelSparkSessionOptions): Promise<OperationResponse>;
-    // (undocumented)
     cancelSparkStatement(sessionId: number, statementId: number, options?: CancelSparkStatementOptions): Promise<OperationResponse>;
-    // (undocumented)
     createSparkBatchJob(sparkBatchJobOptions: SparkBatchJobOptions, options?: CreateSparkBatchJobOptions): Promise<CreateSparkBatchJobResponse>;
-    // (undocumented)
     createSparkSeesion(sparkSessionOptions: SparkSessionOptions, options?: CreateSparkSessionOptions): Promise<CreateSparkSessionResponse>;
-    // (undocumented)
     createSparkStatement(sessionId: number, sparkStatementOptions: SparkStatementOptions, options?: CreateSparkStatementOptions): Promise<CreateSparkStatementResponse>;
-    // (undocumented)
     getSparkBatchJob(batchId: number, options?: GetSparkBatchJobOptions): Promise<GetSparkBatchJobResponse>;
-    // (undocumented)
     getSparkSession(sessionId: number, options?: GetSparkSessionOptions): Promise<GetSparkSessionResponse>;
-    // (undocumented)
     getSparkStatement(sessionId: number, statementId: number, options?: GetSparkStatementOptions): Promise<GetSparkStatementResponse>;
-    // (undocumented)
-    listSparkBatchJob(options?: ListSparkBatchJobOptions): Promise<ListSparkBatchJobResponse>;
-    // (undocumented)
-    listSparkSession(options?: ListSparkSessionOptions): Promise<ListSparkSessionResponse>;
-    // (undocumented)
-    listSparkStatement(sessionId: number, options?: ListSparkStatementOptions): Promise<ListSparkStatementResponse>;
-    // (undocumented)
+    listSparkBatchJobs(options?: ListSparkBatchJobsOptions): Promise<ListSparkBatchJobsResponse>;
+    listSparkSessions(options?: ListSparkSessionsOptions): Promise<ListSparkSessionsResponse>;
+    listSparkStatements(sessionId: number, options?: ListSparkStatementsOptions): Promise<ListSparkStatementsResponse>;
     resetSparkSessionTimeout(sessionId: number, options: ResetSparkSessionTimeoutOptions): Promise<OperationResponse>;
     readonly workspaceEndpoint: string;
 }

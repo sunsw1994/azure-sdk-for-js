@@ -5,7 +5,6 @@ import { ClientSecretCredential } from "@azure/identity";
 import { SparkClient } from "../../src";
 import { env, record, RecorderEnvironmentSetup } from "@azure/test-utils-recorder";
 import { uniqueString } from "./recorderUtils";
-import TestClient from "./testClient";
 import { getWorkspaceName, getSparkpoolName } from "./utils.common";
 
 export async function authenticate(that: any): Promise<any> {
@@ -37,7 +36,6 @@ export async function authenticate(that: any): Promise<any> {
   const sparkpoolName = getSparkpoolName();
   const workspaceEndpoint = `https://${worksapceName}.dev.azuresynapse.net`;
   const client = new SparkClient(workspaceEndpoint, sparkpoolName, credential);
-  const testClient = new TestClient(client);
 
-  return { recorder, client, testClient, secretSuffix };
+  return { recorder, client, secretSuffix };
 }

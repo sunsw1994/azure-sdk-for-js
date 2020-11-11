@@ -6,14 +6,20 @@ import { OperationOptions } from "@azure/core-http";
 import { HttpResponse } from "@azure/core-http";
 
 export {
+  SparkBatchGetSparkBatchJobOptionalParams as GetSparkBatchJobOptions,
+  SparkBatchGetSparkBatchJobsOptionalParams as ListSparkBatchJobsOptions,
+  SparkBatchCreateSparkBatchJobOptionalParams as CreateSparkBatchJobOptions,
+  SparkSessionGetSparkSessionOptionalParams as GetSparkSessionOptions,
+  SparkSessionGetSparkSessionsOptionalParams as ListSparkSessionsOptions,
+  SparkSessionCreateSparkSessionOptionalParams as CreateSparkSessionOptions,
   SparkBatchGetSparkBatchJobResponse as GetSparkBatchJobResponse,
-  SparkBatchGetSparkBatchJobsResponse as ListSparkBatchJobResponse,
+  SparkBatchGetSparkBatchJobsResponse as ListSparkBatchJobsResponse,
   SparkBatchCreateSparkBatchJobResponse as CreateSparkBatchJobResponse,
   SparkSessionGetSparkSessionResponse as GetSparkSessionResponse,
-  SparkSessionGetSparkSessionsResponse as ListSparkSessionResponse,
+  SparkSessionGetSparkSessionsResponse as ListSparkSessionsResponse,
   SparkSessionCreateSparkSessionResponse as CreateSparkSessionResponse,
   SparkSessionGetSparkStatementResponse as GetSparkStatementResponse,
-  SparkSessionGetSparkStatementsResponse as ListSparkStatementResponse,
+  SparkSessionGetSparkStatementsResponse as ListSparkStatementsResponse,
   SparkSessionCreateSparkStatementResponse as CreateSparkStatementResponse,
   SparkBatchJobCollection,
   SparkBatchJob,
@@ -55,48 +61,18 @@ export interface SparkClientOptions extends PipelineOptions {
   endpoint?: string;
 }
 
-/**
- * Options to get a role definition.
- */
-export {
-  SparkBatchGetSparkBatchJobOptionalParams as GetSparkBatchJobOptions,
-  SparkBatchGetSparkBatchJobsOptionalParams as ListSparkBatchJobOptions,
-  SparkBatchCreateSparkBatchJobOptionalParams as CreateSparkBatchJobOptions,
-  SparkSessionGetSparkSessionOptionalParams as GetSparkSessionOptions,
-  SparkSessionGetSparkSessionsOptionalParams as ListSparkSessionOptions,
-  SparkSessionCreateSparkSessionOptionalParams as CreateSparkSessionOptions
-} from "./generated/models";
-
-// /**
-//  * Options to delete role assignment.
-//  */
 export type CancelSparkBatchJobOptions = OperationOptions;
 
-// /**
-//  * Options to delete role assignment.
-//  */
 export type CancelSparkSessionOptions = OperationOptions;
 
 export type ResetSparkSessionTimeoutOptions = OperationOptions;
 
-/**
- * Options to get a role definition.
- */
 export type GetSparkStatementOptions = OperationOptions;
 
-// /**
-//  * Options to list role definitions.
-//  */
-export type ListSparkStatementOptions = OperationOptions;
+export type ListSparkStatementsOptions = OperationOptions;
 
-// /**
-//  * Options to create role assignment.
-//  */
 export type CreateSparkStatementOptions = OperationOptions;
 
-// /**
-//  * Options to delete role assignment.
-//  */
 export type CancelSparkStatementOptions = OperationOptions;
 
 // /**
@@ -119,15 +95,3 @@ export interface OperationResponse {
    */
   _response: HttpResponse;
 }
-
-// export interface RoleAssignmentsListResponse {
-//   /**
-//    * List of Synapse role assignments.
-//    */
-//   value: string[];
-// }
-
-// /**
-//  * Represents an object with a non-enumerable _response property which provides
-//  */
-// export type WithResponse<T> = T & { _response: HttpResponse };
